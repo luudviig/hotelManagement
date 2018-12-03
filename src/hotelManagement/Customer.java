@@ -10,9 +10,7 @@ public class Customer {
     String telephoneNumber;
     String email;
 
-    //ArrayList för Costumer
 
-    ArrayList<String> customer = new ArrayList<String>();
 
     public Customer (String ssn, String name, String address, String telephoneNumber, String email) {
 
@@ -45,9 +43,7 @@ public class Customer {
         return email;
     }
 
-    public ArrayList<String> getCustomer() {
-        return customer;
-    }
+
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
@@ -69,7 +65,5 @@ public class Customer {
         this.email = email;
     }
 
-    public void setCustomer(ArrayList<String> customer) {
-        this.customer = customer;
-    }
+
 }
