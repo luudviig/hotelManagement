@@ -14,12 +14,9 @@ public class PrintMenus {
         System.out.println("[3] Make new booking");
         System.out.println("[4] Edit information");
         System.out.println("[5] Exit");
-
-
     }
 
     public static void viewmenu() {
-
         System.out.println("------Menu-----");
         System.out.println("[1] View customer");
         System.out.println("[2] View rooms");

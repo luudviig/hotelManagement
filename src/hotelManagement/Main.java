@@ -1,6 +1,5 @@
 package hotelManagement;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +13,6 @@ public class Main {
         //plats för variabler
         boolean a = true;
         ArrayList<Customer> arrayListCustomer = new ArrayList<>();
-
 
         //Detta är en array som består av flera obejkt(Room)-Ludde
         Room[] hotelRooms = new Room[100];
@@ -33,9 +31,7 @@ public class Main {
         for (int i = 49; i < 100; i++) {
             Room room3 = new Room(i + 1, 2, true, 3000, false, 3);
             hotelRooms[i] = room3;
-
         }
-
 
         do {
             PrintMenus.viewmenu();
@@ -121,10 +117,6 @@ public class Main {
         }
         return arraylistcustomer;
     }
-//    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
-//
-//    }
-
 
     //View room -abdifatah
     private void viewRoom(Room[] hotelRooms) {
