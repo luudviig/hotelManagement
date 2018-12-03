@@ -9,7 +9,8 @@ public class Main {
 
 
         Customer cust1 = new Customer("9907238822", "name", "kyrkovägen 3", "0700435678", "apa@hotmail.com");
-        ArrayList<String> customer_arr = new ArrayList<String>();
+        ArrayList<Customer> customer_arr = new ArrayList<Customer>();
+        
 
        
 
@@ -35,7 +36,7 @@ public class Main {
             Room room3 = new Room(i+1,2,true,3000,false,3);
             hotelRooms[i] = room3;
         }
-        
+
     }
 
 //    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
