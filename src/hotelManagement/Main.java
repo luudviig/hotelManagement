@@ -26,23 +26,10 @@ public class Main {
             Room room3 = new Room(i+1,2,true,3000,false,3);
             hotelRooms[i] = room3;
         }
-
-        //Ett sätt för att se vad som finns i array(hotelRooms).
-//        for (int i = 0; i<hotelRooms.length; i++){
-//            System.out.println("Room number: " + hotelRooms[i].getRoomNumber());
-//            System.out.println("Number of beds: " + hotelRooms[i].getNumberOfBeds());
-//            System.out.println("Price per night: " + hotelRooms[i].getPricePerNight());
-//            System.out.println("Booked: " + hotelRooms[i].isBooked());
-//            System.out.println("Balcony: " + hotelRooms[i].isHasBalcony());
-//            System.out.println();
-//        }
-
-
-
-
     }
 
 //    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
 //
 //    }
+    
 }
