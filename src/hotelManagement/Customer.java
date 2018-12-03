@@ -1,20 +1,14 @@
 package hotelManagement;
 
-import java.util.ArrayList;
-
 public class Customer {
 
-     String ssn;
-     String name;
+    String ssn;
+    String name;
     String address;
     String telephoneNumber;
     String email;
 
-    //ArrayList för Costumer
-
-    ArrayList<String> customer = new ArrayList<String>();
-
-    public Customer (String ssn, String name, String address, String telephoneNumber, String email) {
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
 
         this.ssn = ssn;
         this.name = name;
@@ -45,10 +39,6 @@ public class Customer {
         return email;
     }
 
-    public ArrayList<String> getCustomer() {
-        return customer;
-    }
-
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
@@ -69,7 +59,5 @@ public class Customer {
         this.email = email;
     }
 
-    public void setCustomer(ArrayList<String> customer) {
-        this.customer = customer;
-    }
+
 }
