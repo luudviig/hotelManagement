@@ -72,4 +72,6 @@ public class Customer {
     public void setCustomer(ArrayList<String> customer) {
         this.customer = customer;
     }
+
+
 }
