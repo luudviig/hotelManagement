@@ -1,7 +1,6 @@
 package hotelManagement;
 
 public class Customer {
-
     String ssn;
     String name;
     String address;
@@ -9,7 +8,6 @@ public class Customer {
     String email;
 
     public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
-
         this.ssn = ssn;
         this.name = name;
         this.address = address;
@@ -18,7 +16,6 @@ public class Customer {
     }
 
     //En jävla massa getters
-
     public String getSsn() {
         return ssn;
     }
