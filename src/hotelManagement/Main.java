@@ -1,12 +1,19 @@
 package hotelManagement;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
+    private Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         Main getMethod = new Main();
+
+        //plats för variabler
+        boolean a = true;
+        ArrayList<Customer> arrayListCustomer = new ArrayList<>();
+
 
         //Detta är en array som består av flera obejkt(Room)-Ludde
         Room[] hotelRooms = new Room[100];
@@ -27,12 +34,101 @@ public class Main {
             hotelRooms[i] = room3;
         }
 
+        do {
+            PrintMenus.viewmenu();
+            int choice = Integer.parseInt(getMethod.input.nextLine());
+            switch (choice) {
+                case 1:
+                    getMethod.viewCustomer(arrayListCustomer);
+                    break;
+                case 2:
+                    System.out.println("vänta på inlägg");
+                    break;
+                case 3:
+                    System.out.println("vänta på inlägg");
+                    break;
+                case 4:
+                    hotelRooms = getMethod.makeBooking(hotelRooms);
+                    break;
+                case 5:
+                    System.out.println("vänta på inlägg");
+                    break;
+                case 6:
+                    System.out.println("vänta på inlägg");
+                    break;
+                case 7:
+                    arrayListCustomer = getMethod.listofcustomer(arrayListCustomer);
+                    break;
+                case 8:
+                    arrayListCustomer = getMethod.removeCustomer(arrayListCustomer);
+                    break;
+                case 9:
+                    System.out.println("vänta på inlägg");
+                    break;
+                case 10:
+                    a = false;
+                    break;
+                default:
+                    System.out.println("Enter a number");
+                    break;
+            }
+        } while (a);
 
     }
 
-    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
-
-
+    private Room[] makeBooking(Room[] hotelRooms) {
+        for (int i = 0; i < hotelRooms.length; i++) {
+            if (hotelRooms[i].isBooked() == false) {
+                System.out.println(hotelRooms[i]);
+            }
+        }
+        System.out.println("Which room would you like to book? ");
+        int roomToBook = Integer.parseInt(input.nextLine());
+        for (int i = 0; i < hotelRooms.length; i++) {
+            if (hotelRooms[i].getRoomNumber() == roomToBook) {
+                hotelRooms[i].setBooked(true);
+            }
+        }
+        return hotelRooms;
     }
 
+
+    private ArrayList<Customer> listofcustomer(ArrayList<Customer> arraylistcustomer) {
+        System.out.println("Name: ");
+        String name = input.nextLine();
+        System.out.println("SSN: ");
+        String ssn = input.nextLine();
+        System.out.println("Address: ");
+        String address = input.nextLine();
+        System.out.println("Email: ");
+        String email = input.nextLine();
+        System.out.println("Phonenumber: ");
+        String phone = input.nextLine();
+
+        Customer customer = new Customer(ssn, name, address, phone, email);
+        arraylistcustomer.add(customer);
+        return arraylistcustomer;
+    }
+
+    private void viewCustomer(ArrayList<Customer> arraylistcustomer) {
+        for (int i = 0; i < arraylistcustomer.size(); i++) {
+            System.out.println("Name: " + arraylistcustomer.get(i).getName());
+            System.out.println("Email: " + arraylistcustomer.get(i).getEmail());
+            System.out.println("Social security number: " + arraylistcustomer.get(i).getSsn());
+            System.out.println("Phone number: " + arraylistcustomer.get(i).getTelephoneNumber());
+            System.out.println("Address: " + arraylistcustomer.get(i).getAddress());
+            System.out.println();
+        }
+    }
+
+    private ArrayList<Customer> removeCustomer(ArrayList<Customer> arraylistcustomer) {
+        System.out.println("Enter your SSN: ");
+        String ssn = input.nextLine();
+        for (int i = 0; i < arraylistcustomer.size(); i++) {
+            if (arraylistcustomer.get(i).getSsn().contains(ssn)) {
+                arraylistcustomer.remove(i);
+            }
+        }
+        return arraylistcustomer;
+    }
 }
