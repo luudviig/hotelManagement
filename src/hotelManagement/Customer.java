@@ -12,7 +12,7 @@ public class Customer {
 
     //ArrayList för Costumer
 
-    ArrayList<String> customer = new ArrayList<String>();
+    ArrayList<String> customer = new ArrayList<>();
 
     public Customer (String ssn, String name, String address, String telephoneNumber, String email) {
 

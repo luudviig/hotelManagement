@@ -33,6 +33,7 @@ public class Main {
         for (int i = 49; i < 100; i++) {
             Room room3 = new Room(i + 1, 2, true, 3000, false, 3);
             hotelRooms[i] = room3;
+
         }
 
 
@@ -45,7 +46,7 @@ public class Main {
                     getMethod.viewCustomer(arrayListCustomer);
                     break;
                 case 2:
-                    System.out.println("vänta på inlägg");
+                    getMethod.viewRoom(hotelRooms);
                     break;
                 case 3:
                     System.out.println("vänta på inlägg");
@@ -79,7 +80,7 @@ public class Main {
 
     }
 
-    private ArrayList<Customer> listofcustomer(ArrayList<Customer> arraylistcustomer){
+    private ArrayList<Customer> listofcustomer(ArrayList<Customer> arraylistcustomer) {
 
         System.out.println("Name: ");
         String name = input.nextLine();
@@ -92,15 +93,15 @@ public class Main {
         System.out.println("Phonenumber: ");
         String phone = input.nextLine();
 
-        Customer customer = new Customer(ssn,name,address,phone,email);
+        Customer customer = new Customer(ssn, name, address, phone, email);
 
         arraylistcustomer.add(customer);
 
         return arraylistcustomer;
     }
 
-    private void viewCustomer(ArrayList<Customer> arraylistcustomer){
-        for(int i=0; i< arraylistcustomer.size();i++){
+    private void viewCustomer(ArrayList<Customer> arraylistcustomer) {
+        for (int i = 0; i < arraylistcustomer.size(); i++) {
             System.out.println("Name: " + arraylistcustomer.get(i).getName());
             System.out.println("Email: " + arraylistcustomer.get(i).getEmail());
             System.out.println("Social security number: " + arraylistcustomer.get(i).getSsn());
@@ -110,11 +111,11 @@ public class Main {
         }
     }
 
-    private ArrayList<Customer> removeCustomer(ArrayList<Customer> arraylistcustomer){
+    private ArrayList<Customer> removeCustomer(ArrayList<Customer> arraylistcustomer) {
         System.out.println("Enter your SSN: ");
         String ssn = input.nextLine();
-        for (int i = 0; i<arraylistcustomer.size(); i++){
-            if (arraylistcustomer.get(i).getSsn().contains(ssn)){
+        for (int i = 0; i < arraylistcustomer.size(); i++) {
+            if (arraylistcustomer.get(i).getSsn().contains(ssn)) {
                 arraylistcustomer.remove(i);
             }
         }
@@ -124,4 +125,16 @@ public class Main {
 //
 //    }
 
+
+    //View room -abdifatah
+    private void viewRoom(Room[] hotelRooms) {
+        for (int i = 0; i < hotelRooms.length; i++) {
+            System.out.println("Room number: " + hotelRooms[i].getRoomNumber());
+            System.out.println("Number of beds: " + hotelRooms[i].getNumberOfBeds());
+            System.out.println("Price per night: " + hotelRooms[i].getPricePerNight());
+            System.out.println("Booked: " + hotelRooms[i].isBooked());
+            System.out.println("Balcony: " + hotelRooms[i].isHasBalcony());
+            System.out.println();
+        }
+    }
 }
