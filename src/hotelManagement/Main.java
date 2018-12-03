@@ -5,6 +5,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+
+
+       
+
+
         Scanner input = new Scanner(System.in);
         Main getMethod = new Main();
 
@@ -26,6 +32,7 @@ public class Main {
             Room room3 = new Room(i+1,2,true,3000,false,3);
             hotelRooms[i] = room3;
         }
+
     }
 
 //    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
