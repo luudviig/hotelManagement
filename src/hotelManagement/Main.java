@@ -25,11 +25,25 @@ public class Main {
         for (int i = 49; i<100; i++){
             Room room3 = new Room(i+1,2,true,3000,false,3);
             hotelRooms[i] = room3;
+
+
+            getMethod.viewRoom(hotelRooms);
         }
     }
 
 //    private Room[] makeBooking(Room room, Room[] hotelRooms,int roomToBook) {
 //
 //    }
+
+    //View room abdifatah
+    private void viewRoom(Room [] view){
+        for (int i = 0; i < view.length; i++) {
+            if (view[i] == null){
+                System.out.println("Booked");
+            }else {
+                System.out.println("Not booked");
+            }
+        }
+    }
     
 }
