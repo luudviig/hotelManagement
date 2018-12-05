@@ -70,7 +70,8 @@ public class Main {
                     System.out.println("vänta på inlägg");
                     break;
                 case 10:
-                    System.out.println("vänta på inlägg");
+                    System.out.println("Hopefully, you had a great time with as! Bye");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Enter a number");
