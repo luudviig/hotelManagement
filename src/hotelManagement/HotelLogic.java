@@ -109,12 +109,31 @@ public class HotelLogic {
 
 // redigera info om rum - Kristian
 public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
-    System.out.println("Enter the room number: ");
-    String roomNumber = input.nextLine();
+    System.out.println("Enter the room number you want to edit: ");
+    int roomNumber = Integer.parseInt(input.nextLine());
     for (int i = 0; i < hotelRooms.size(); i++) {
-        if (hotelRooms.get(i).getRoomNumber().contains(roomNumber)) {
-            hotelRooms.remove(i);
+        if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+            PrintMenus.menuForEditRoomInfo();
+            int answer = Integer.parseInt(input.nextLine());
+            switch (answer) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Incorrect input, enter a number between 1-6");
+                    break;
+            }
 
+        }
 
     }
 }

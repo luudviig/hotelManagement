@@ -25,7 +25,7 @@ public class PrintMenus {
         System.out.println("[10] Exit");
     }
 
-    public static void menuForEditInfo(){
+    public static void menuForEditRoomInfo(){
         System.out.println("------Menu-----");
         System.out.println("[1] Edit room number");
         System.out.println("[2] Edit number of beds");
