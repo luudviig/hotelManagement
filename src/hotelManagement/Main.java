@@ -51,6 +51,7 @@ public class Main {
                 case 5:
                     break;
                 case 6:
+                    hotelRooms = hotelLogic.removeRoom(hotelRooms);
                     break;
                 case 7:
                     arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);

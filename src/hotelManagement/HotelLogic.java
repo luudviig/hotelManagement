@@ -87,4 +87,14 @@ public class HotelLogic {
             System.out.println();
         }
     }
+     public ArrayList<Room> removeRoom(ArrayList<Room> hotelRooms){
+         System.out.println("Which room would you like to remove?");
+         int roomnumber = input.nextInt();
+         for (int i = 0; i < hotelRooms.size();i++){
+             if(hotelRooms.get(i).equals(hotelRooms.get(roomnumber - 1))){
+                 hotelRooms.remove(i);
+             }
+         }
+         return hotelRooms;
+     }
 }
