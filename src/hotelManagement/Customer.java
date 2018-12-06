@@ -1,18 +1,20 @@
 package hotelManagement;
 
 public class Customer {
-    String ssn;
-    String name;
-    String address;
-    String telephoneNumber;
-    String email;
+    private final int accountNumber;
+    private String ssn;
+    private String name;
+    private String address;
+    private String telephoneNumber;
+    private String email;
 
-    public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email,int accountNumber) {
         this.ssn = ssn;
         this.name = name;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
+        this.accountNumber = accountNumber;
     }
 
     //En jävla massa getters-Kristian
@@ -56,4 +58,7 @@ public class Customer {
         this.email = email;
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
 }

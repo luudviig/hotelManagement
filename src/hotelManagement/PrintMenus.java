@@ -22,7 +22,9 @@ public class PrintMenus {
         System.out.println("[7] Add customer");
         System.out.println("[8] Remove customer");
         System.out.println("[9] Search booking");
-        System.out.println("[10] Exit");
+        System.out.println("[10] Add booking");
+        System.out.println("[11] View booking");
+        System.out.println("[12]" );
     }
 
 }

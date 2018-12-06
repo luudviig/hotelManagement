@@ -7,15 +7,15 @@ public class Main {
 
     Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-
         Main getMethod = new Main();
-
 
         //plats för variabler
         boolean a = true;
         ArrayList<Customer> arrayListCustomer = new ArrayList<>();
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
+        ArrayList<Booking> bookings = new ArrayList<>();
+
         //adds rooms for floor 1-Ludde
         for (int i = 0; i<3; i++){
             Room room = new Room((i+1),1,false,2000,false,1);
@@ -56,19 +56,20 @@ public class Main {
                     arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
                     break;
                 case 8:
-                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer);
+                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer,bookings);
                     break;
                 case 9:
                     break;
                 case 10:
-                    a = false;
+                    bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
+                    break;
+                case 11:
+                    hotelLogic.viewBookings(bookings);
                     break;
                 default:
                     System.out.println("Incorrect input, enter a number between 1-10");
                     break;
             }
         } while (a);
-
     }
-
 }
