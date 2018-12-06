@@ -1,8 +1,7 @@
 package hotelManagement;
 
-import java.util.ArrayList;
-
 public class Customer {
+
 
     String ssn;
     String name;
@@ -10,9 +9,13 @@ public class Customer {
     String telephoneNumber;
     String email;
 
+
     //ArrayList för Costumer
 
     ArrayList<String> customer = new ArrayList<>();
+
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
+
 
     public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
 
@@ -23,8 +26,7 @@ public class Customer {
         this.email = email;
     }
 
-    //En jävla massa getters
-
+    //En jävla massa getters-Kristian
     public String getSsn() {
         return ssn;
     }
@@ -43,10 +45,6 @@ public class Customer {
 
     public String getEmail() {
         return email;
-    }
-
-    public ArrayList<String> getCustomer() {
-        return customer;
     }
 
     public void setSsn(String ssn) {
@@ -68,10 +66,5 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public void setCustomer(ArrayList<String> customer) {
-        this.customer = customer;
-    }
-
 
 }

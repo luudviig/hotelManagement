@@ -5,80 +5,78 @@ import java.util.Scanner;
 
 public class Main {
 
-    private Scanner input = new Scanner(System.in);
-
+    Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
+
         Main getMethod = new Main();
+
 
         //plats för variabler
         boolean a = true;
         ArrayList<Customer> arrayListCustomer = new ArrayList<>();
-
-
-        //Detta är en array som består av flera obejkt(Room)-Ludde
-        Room[] hotelRooms = new Room[100];
-
-        //Skapar en loop som lägger till objekt(Room), första våningen-Ludde
-        for (int i = 0; i < 25; i++) {
-            Room room1 = new Room(i + 1, 2, false, 2000, false, 1);
-            hotelRooms[i] = room1;
+        HotelLogic hotelLogic = new HotelLogic();
+        ArrayList<Room> hotelRooms = new ArrayList<>();
+        //adds rooms for floor 1-Ludde
+        for (int i = 0; i<3; i++){
+            Room room = new Room((i+1),1,false,2000,false,1);
+            hotelRooms.add(room);
         }
-        //Skapar en loop som lägger till objekt(Room), andra våningen-Ludde
-        for (int i = 25; i < 50; i++) {
-            Room room2 = new Room(i + 1, 2, true, 2500, false, 2);
-            hotelRooms[i] = room2;
+        //adds rooms for floor 2-Ludde
+        for (int i = 3; i<6; i++){
+            Room room = new Room((i+1),2,true,2500,false,2);
+            hotelRooms.add(room);
         }
-        //Skapar en loop som lägger till objekt(Room), tredje våningen-Ludde
-        for (int i = 49; i < 100; i++) {
-            Room room3 = new Room(i + 1, 2, true, 3000, false, 3);
-            hotelRooms[i] = room3;
-
+        //adds rooms for floor 3-Ludde
+        for (int i = 6; i<9; i++){
+            Room room = new Room((i+1),2,true,2700,false,3);
+            hotelRooms.add(room);
         }
 
 
+        //skapar en loop som loopar tills man "exitar"-Ludde
         do {
-            PrintMenus.viewmenu();
+            PrintMenus.viewMenu();
             int choice = Integer.parseInt(getMethod.input.nextLine());
-
             switch (choice) {
                 case 1:
-                    getMethod.viewCustomer(arrayListCustomer);
+                    hotelLogic.viewCustomer(arrayListCustomer);
                     break;
                 case 2:
-                    getMethod.viewRoom(hotelRooms);
+                    hotelLogic.viewRoom(hotelRooms);
                     break;
                 case 3:
-                    System.out.println("vänta på inlägg");
                     break;
                 case 4:
-                    System.out.println("vänta på inlägg");
                     break;
                 case 5:
-                    System.out.println("vänta på inlägg");
                     break;
                 case 6:
-                    System.out.println("vänta på inlägg");
                     break;
                 case 7:
-                    arrayListCustomer = getMethod.listofcustomer(arrayListCustomer);
+                    arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
                     break;
                 case 8:
-                    arrayListCustomer = getMethod.removeCustomer(arrayListCustomer);
+                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer);
                     break;
                 case 9:
                     break;
                 case 10:
+<<<<<<< HEAD
                     System.out.println("Hopefully, you had a great time with as! Bye");
                     System.exit(0);
+=======
+                    a = false;
+>>>>>>> master
                     break;
                 default:
-                    System.out.println("Enter a number");
+                    System.out.println("Incorrect input, enter a number between 1-10");
                     break;
             }
         } while (a);
 
     }
 
+<<<<<<< HEAD
     private ArrayList<Customer> listofcustomer(ArrayList<Customer> arraylistcustomer) {
 
         System.out.println("Name: ");
@@ -138,4 +136,6 @@ public class Main {
         }
     }
 
+=======
+>>>>>>> master
 }
