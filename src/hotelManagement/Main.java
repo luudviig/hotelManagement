@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
         Main getMethod = new Main();
 
@@ -17,22 +18,21 @@ public class Main {
         ArrayList<Booking> bookings = new ArrayList<>();
 
         //adds rooms for floor 1-Ludde
-        for (int i = 0; i<3; i++){
-            Room room = new Room((i+1),1,false,2000,false,1);
+        for (int i = 0; i < 3; i++) {
+            Room room = new Room((i + 1), 1, false, 2000, false, 1);
             hotelRooms.add(room);
         }
         //adds rooms for floor 2-Ludde
-        for (int i = 3; i<6; i++){
-            Room room = new Room((i+1),2,true,2500,false,2);
+        for (int i = 3; i < 6; i++) {
+            Room room = new Room((i + 1), 2, true, 2500, false, 2);
             hotelRooms.add(room);
         }
         //adds rooms for floor 3-Ludde
-        for (int i = 6; i<9; i++){
-            Room room = new Room((i+1),2,true,2700,false,3);
+        for (int i = 6; i < 9; i++) {
+            Room room = new Room((i + 1), 2, true, 2700, false, 3);
             hotelRooms.add(room);
         }
-
-
+        
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
             PrintMenus.viewMenu();
@@ -47,6 +47,7 @@ public class Main {
                 case 3:
                     break;
                 case 4:
+                    hotelRooms = hotelLogic.addRoom(hotelRooms);
                     break;
                 case 5:
                     break;
@@ -56,15 +57,17 @@ public class Main {
                     arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
                     break;
                 case 8:
-                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer,bookings);
+                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                     break;
                 case 9:
                     break;
                 case 10:
-                    bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
+                    bookings = hotelLogic.makeBooking(bookings, arrayListCustomer, hotelRooms);
                     break;
                 case 11:
                     hotelLogic.viewBookings(bookings);
+                    System.out.println("Hopefully, you had a great time with us! Bye");
+                    a = false;
                     break;
                 default:
                     System.out.println("Incorrect input, enter a number between 1-10");

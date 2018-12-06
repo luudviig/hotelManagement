@@ -1,5 +1,7 @@
 package hotelManagement;
 
+import java.util.ArrayList;
+
 public class Customer {
     private final int accountNumber;
     private String ssn;
@@ -8,7 +10,7 @@ public class Customer {
     private String telephoneNumber;
     private String email;
 
-    public Customer(String ssn, String name, String address, String telephoneNumber, String email,int accountNumber) {
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email, int accountNumber) {
         this.ssn = ssn;
         this.name = name;
         this.address = address;
