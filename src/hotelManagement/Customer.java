@@ -15,7 +15,7 @@ public class Customer {
         this.email = email;
     }
 
-    //En jävla massa getters
+    //En jävla massa getters-Kristian
     public String getSsn() {
         return ssn;
     }
