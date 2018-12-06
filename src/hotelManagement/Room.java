@@ -21,7 +21,9 @@ public class Room {
         return roomNumber;
     }
 
-    public int getFloor() { return floor; }
+    public int getFloor() {
+        return floor;
+    }
 
     public int getNumberOfBeds() {
         return numberOfBeds;
@@ -50,6 +52,6 @@ public class Room {
     public void setBooked(boolean booked) {
         isBooked = booked;
     }
-
-
 }
+
+
