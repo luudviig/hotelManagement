@@ -1,6 +1,5 @@
 package hotelManagement;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,7 +66,6 @@ public class Main {
                     arrayListCustomer = getMethod.removeCustomer(arrayListCustomer);
                     break;
                 case 9:
-                    System.out.println("vänta på inlägg");
                     break;
                 case 10:
                     System.out.println("Hopefully, you had a great time with as! Bye");
@@ -118,6 +116,7 @@ public class Main {
         for (int i = 0; i < arraylistcustomer.size(); i++) {
             if (arraylistcustomer.get(i).getSsn().contains(ssn)) {
                 arraylistcustomer.remove(i);
+                break;
             }
         }
         return arraylistcustomer;
