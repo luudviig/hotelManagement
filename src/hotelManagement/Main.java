@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
 
         Main getMethod = new Main();
@@ -47,6 +47,7 @@ public class Main {
                 case 3:
                     break;
                 case 4:
+                    hotelRooms = hotelLogic.addRoom(hotelRooms);
                     break;
                 case 5:
                     break;
@@ -61,12 +62,12 @@ public class Main {
                 case 9:
                     break;
                 case 10:
-<<<<<<< HEAD
+
                     System.out.println("Hopefully, you had a great time with as! Bye");
                     System.exit(0);
-=======
+
                     a = false;
->>>>>>> master
+
                     break;
                 default:
                     System.out.println("Incorrect input, enter a number between 1-10");
@@ -76,7 +77,7 @@ public class Main {
 
     }
 
-<<<<<<< HEAD
+
     private ArrayList<Customer> listofcustomer(ArrayList<Customer> arraylistcustomer) {
 
         System.out.println("Name: ");
@@ -136,6 +137,4 @@ public class Main {
         }
     }
 
-=======
->>>>>>> master
 }

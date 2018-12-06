@@ -9,7 +9,7 @@ public class HotelLogic {
     //Metod för att boka ett specifikt rum-Ludde
     public Room[] makeBooking(Room[] hotelRooms) {
         for (int i = 0; i < hotelRooms.length; i++) {
-            if (hotelRooms[i].isBooked() == false) {
+            if (!hotelRooms[i].isBooked()) {
                 System.out.println("Hotel room: " + hotelRooms[i].getRoomNumber());
                 System.out.println("Amount of beds: " + hotelRooms[i].getNumberOfBeds());
                 System.out.println("Price per night: " + hotelRooms[i].getPricePerNight());
@@ -23,10 +23,9 @@ public class HotelLogic {
         System.out.println("Which room would you like to book? ");
         int roomToBook = Integer.parseInt(input.nextLine());
         for (int i = 0; i < hotelRooms.length; i++) {
-            if (hotelRooms[i].getRoomNumber() == roomToBook && hotelRooms[i].isBooked()==false) {
+            if (hotelRooms[i].getRoomNumber() == roomToBook && !hotelRooms[i].isBooked()) {
                 hotelRooms[i].setBooked(true);
-            }
-            else if (hotelRooms[i].isBooked()==true){
+            } else if (hotelRooms[i].isBooked()) {
                 System.out.println("This room is already booked.. try again.");
             }
         }
@@ -47,7 +46,6 @@ public class HotelLogic {
 
         Customer customer = new Customer(ssn, name, address, phone, email);
         arraylistcustomer.add(customer);
-
 
 
         return arraylistcustomer;
@@ -87,4 +85,104 @@ public class HotelLogic {
             System.out.println();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ArrayList<Room> addRoom(ArrayList<Room> hotelRooms) {
+            System.out.println("How many would you like to add?");
+            int userinout = input.nextInt();
+            for (int i = 9; i < userinout + 9; i++) {
+                System.out.println("How many beds does the room have? ");
+                int amountOfBeds = input.nextInt();
+
+                System.out.println("Does the room has a balcony? true/false ");
+                Boolean balcony = input.nextBoolean();
+
+                System.out.println("What is the price of the room? ");
+                int pricePerNigth = input.nextInt();
+
+                System.out.println("Which floor?");
+                int floor = input.nextInt();
+
+
+                Room room = new Room(i+1, amountOfBeds, balcony, pricePerNigth, false, floor);
+                hotelRooms.add(room);
+
+            }
+            return hotelRooms;
+        }
+
+
+
+
+
+
+
+
+
+
 }
