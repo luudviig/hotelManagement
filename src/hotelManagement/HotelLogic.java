@@ -8,24 +8,42 @@ public class HotelLogic {
 
 
     public ArrayList<Customer> addCustomer(ArrayList<Customer> arraylistcustomer) {
-        System.out.println("Enter account number: ");
-        int accountNumber = Integer.parseInt(input.nextLine());
-        System.out.println("Name: ");
-        String name = input.nextLine();
-        System.out.println("SSN: ");
-        String ssn = input.nextLine();
-        System.out.println("Email: ");
-        String email = input.nextLine();
-        System.out.println("Address: ");
-        String address = input.nextLine();
-        System.out.println("Phonenumber: ");
-        String phone = input.nextLine();
 
+            System.out.println("Enter account number: ");
+            int accountNumber = Integer.parseInt(input.nextLine());
+            for (int i=0; i<arraylistcustomer.size();i++) {
+                if (arraylistcustomer.get(i).getAccountNumber()==accountNumber){
+                    System.out.println("This account number is already taken.. ");
+                }
+                else if (arraylistcustomer.get(i).getAccountNumber()!=accountNumber){
+                    System.out.println("Name: ");
+                    String name = input.nextLine();
+                    System.out.println("SSN: ");
+                    String ssn = input.nextLine();
+                    System.out.println("Email: ");
+                    String email = input.nextLine();
+                    System.out.println("Address: ");
+                    String address = input.nextLine();
+                    System.out.println("Phonenumber: ");
+                    String phone = input.nextLine();
 
-        Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
-        arraylistcustomer.add(customer);
+                    Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
+                    arraylistcustomer.add(customer);
+                }
+            }
+            System.out.println("Name: ");
+            String name = input.nextLine();
+            System.out.println("SSN: ");
+            String ssn = input.nextLine();
+            System.out.println("Email: ");
+            String email = input.nextLine();
+            System.out.println("Address: ");
+            String address = input.nextLine();
+            System.out.println("Phonenumber: ");
+            String phone = input.nextLine();
 
-
+            Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
+            arraylistcustomer.add(customer);
 
         return arraylistcustomer;
     }
