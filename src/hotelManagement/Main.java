@@ -51,6 +51,7 @@ public class Main {
                 case 5:
                     break;
                 case 6:
+                    hotelLogic.editRoom(hotelRooms);
                     break;
                 case 7:
                     arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);

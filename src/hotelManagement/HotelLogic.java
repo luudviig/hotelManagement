@@ -97,3 +97,24 @@ public class HotelLogic {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// redigera info om rum - Kristian
+public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
+    System.out.println("Enter the room number: ");
+    String roomNumber = input.nextLine();
+    for (int i = 0; i < hotelRooms.size(); i++) {
+        if (hotelRooms.get(i).getRoomNumber().contains(roomNumber)) {
+            hotelRooms.remove(i);
+
+
+    }
+}
