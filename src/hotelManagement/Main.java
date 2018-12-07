@@ -45,6 +45,7 @@ public class Main {
                     hotelLogic.viewRoom(hotelRooms);
                     break;
                 case 3:
+                    System.out.println("bara test conflict");
                     break;
                 case 4:
                     break;
