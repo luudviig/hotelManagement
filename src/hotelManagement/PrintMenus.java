@@ -27,5 +27,9 @@ public class PrintMenus {
         System.out.println("[12]" );
     }
 
+    public static void viewMenuEmployeer(){
+        System.out.println();
+    }
+
 }
 
