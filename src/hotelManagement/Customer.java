@@ -1,7 +1,5 @@
 package hotelManagement;
 
-import java.util.ArrayList;
-
 public class Customer {
     private final int accountNumber;
     private String ssn;

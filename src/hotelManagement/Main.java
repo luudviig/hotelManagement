@@ -17,22 +17,9 @@ public class Main {
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
 
-        //adds rooms for floor 1-Ludde
-        for (int i = 0; i < 3; i++) {
-            Room room = new Room((i + 1), 1, false, 2000, false, 1);
-            hotelRooms.add(room);
-        }
-        //adds rooms for floor 2-Ludde
-        for (int i = 3; i < 6; i++) {
-            Room room = new Room((i + 1), 2, true, 2500, false, 2);
-            hotelRooms.add(room);
-        }
-        //adds rooms for floor 3-Ludde
-        for (int i = 6; i < 9; i++) {
-            Room room = new Room((i + 1), 2, true, 2700, false, 3);
-            hotelRooms.add(room);
-        }
-        
+        //kallar på metod som skapar alla rum.
+        hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
+
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
             PrintMenus.viewMenu();
@@ -60,14 +47,13 @@ public class Main {
                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                     break;
                 case 9:
+                    hotelLogic.viewBookings(bookings);
                     break;
                 case 10:
                     bookings = hotelLogic.makeBooking(bookings, arrayListCustomer, hotelRooms);
                     break;
                 case 11:
                     hotelLogic.viewBookings(bookings);
-                    System.out.println("Hopefully, you had a great time with us! Bye");
-                    a = false;
                     break;
                 default:
                     System.out.println("Incorrect input, enter a number between 1-10");

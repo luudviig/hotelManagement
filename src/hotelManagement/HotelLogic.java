@@ -6,41 +6,46 @@ import java.util.Scanner;
 public class HotelLogic {
     private Scanner input = new Scanner(System.in);
 
-    //Metod för att boka ett specifikt rum-Ludde
-    public Room[] makeBooking(Room[] hotelRooms) {
-        for (int i = 0; i < hotelRooms.length; i++) {
-            if (!hotelRooms[i].isBooked()) {
-                System.out.println("Hotel room: " + hotelRooms[i].getRoomNumber());
-                System.out.println("Amount of beds: " + hotelRooms[i].getNumberOfBeds());
-                System.out.println("Price per night: " + hotelRooms[i].getPricePerNight());
-                System.out.println("Balcony: " + hotelRooms[i].isHasBalcony());
-                System.out.println("Booked: " + hotelRooms[i].isBooked());
-                System.out.println("Floor: " + hotelRooms[i].getFloor());
-                System.out.println();
-            }
+    public void searchBooking(ArrayList<Booking> bookings){
+        System.out.println("What date would you like to see bookings? ");
+        String dateToSearchFor = input.nextLine();
 
-        }
-        System.out.println("Which room would you like to book? ");
-        int roomToBook = Integer.parseInt(input.nextLine());
-        for (int i = 0; i < hotelRooms.length; i++) {
-            if (hotelRooms[i].getRoomNumber() == roomToBook && !hotelRooms[i].isBooked()) {
-                hotelRooms[i].setBooked(true);
-            } else if (hotelRooms[i].isBooked()) {
-                System.out.println("This room is already booked.. try again.");
+        for (int i = 0; i<bookings.size(); i++){
+            if (bookings.get(i).getDateToBook() == dateToSearchFor){
+                System.out.println("Booking belons to account: " + bookings.get(i).getAccountNumber());
+                System.out.println("Booked during: " + bookings.get(i).getDateToBook());
+                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook());
             }
+        }
+    }
+
+    public ArrayList<Room> createArrayListOfRooms(ArrayList<Room> hotelRooms){
+        //adds rooms for floor 1-Ludde
+        for (int i = 0; i < 3; i++) {
+            Room room = new Room((i + 1), 1, false, 2000, false, 1);
+            hotelRooms.add(room);
+        }
+        //adds rooms for floor 2-Ludde
+        for (int i = 3; i < 6; i++) {
+            Room room = new Room((i + 1), 2, true, 2500, false, 2);
+            hotelRooms.add(room);
+        }
+        //adds rooms for floor 3-Ludde
+        for (int i = 6; i < 9; i++) {
+            Room room = new Room((i + 1), 2, true, 2700, false, 3);
+            hotelRooms.add(room);
         }
         return hotelRooms;
     }
 
     public ArrayList<Customer> addCustomer(ArrayList<Customer> arraylistcustomer) {
+        boolean a = true;
 
+        do {
             System.out.println("Enter account number: ");
             int accountNumber = Integer.parseInt(input.nextLine());
-            for (int i=0; i<arraylistcustomer.size();i++) {
-                if (arraylistcustomer.get(i).getAccountNumber()==accountNumber){
-                    System.out.println("This account number is already taken.. ");
-                }
-                else if (arraylistcustomer.get(i).getAccountNumber()!=accountNumber){
+            for (int i = 0; i < arraylistcustomer.size(); i++) {
+                if (arraylistcustomer.get(i).getAccountNumber() != accountNumber) {
                     System.out.println("Name: ");
                     String name = input.nextLine();
                     System.out.println("SSN: ");
@@ -51,25 +56,14 @@ public class HotelLogic {
                     String address = input.nextLine();
                     System.out.println("Phonenumber: ");
                     String phone = input.nextLine();
-
                     Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
                     arraylistcustomer.add(customer);
+                    break;
+                } else if (arraylistcustomer.get(i).getAccountNumber() == accountNumber) {
+                    System.out.println("This account number already exists in the system.");
                 }
             }
-            System.out.println("Name: ");
-            String name = input.nextLine();
-            System.out.println("SSN: ");
-            String ssn = input.nextLine();
-            System.out.println("Email: ");
-            String email = input.nextLine();
-            System.out.println("Address: ");
-            String address = input.nextLine();
-            System.out.println("Phonenumber: ");
-            String phone = input.nextLine();
-
-            Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
-            arraylistcustomer.add(customer);
-
+        } while (a);
         return arraylistcustomer;
     }
 
@@ -106,8 +100,18 @@ public class HotelLogic {
             System.out.println("HOTEL ROOM: " + hotelRooms.get(i).getRoomNumber());
             System.out.println("Amount of beds: " + hotelRooms.get(i).getNumberOfBeds());
             System.out.println("Price per night: " + hotelRooms.get(i).getPricePerNight());
-            System.out.println("Balcony: " + hotelRooms.get(i).isHasBalcony());
-            System.out.println("Booked: " + hotelRooms.get(i).isBooked());
+            if (hotelRooms.get(i).isHasBalcony()==true){
+                System.out.println("Balcony: Yes");
+            }
+            else if (hotelRooms.get(i).isHasBalcony()==false){
+                System.out.println("Balcony: No");
+            }
+            if (hotelRooms.get(i).isBooked()==true){
+                System.out.println("Already booked: Yes");
+            }
+            else if (hotelRooms.get(i).isBooked()==false){
+                System.out.println("Already booked: No");
+            }
             System.out.println("Floor: " + hotelRooms.get(i).getFloor());
             System.out.println();
         }
