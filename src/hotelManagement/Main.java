@@ -19,10 +19,10 @@ public class Main {
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
 
+
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
 
-        //skapar en loop som loopar tills man "exitar"-Ludde
         do {
             PrintMenus.printMenu();
             int answer = Integer.parseInt(input.nextLine());
@@ -32,7 +32,6 @@ public class Main {
                     do { c=true;
                         PrintMenus.viewMenuEmployeer1();
                         int choise1 = Integer.parseInt(input.nextLine());
-
                         if (choise1==1) {
                             do {
                                 PrintMenus.viewMenuEmployerOption1();
@@ -44,12 +43,15 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
-                                    //Edit customer information
+                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
+
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
                                     //History of all bookings specific customer
                                 } else if (choise2 == 7) {
+                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,bookings);
+                                } else if (choise2 == 8){
                                     c=false;
                                 }
                             } while (c);
@@ -99,7 +101,7 @@ public class Main {
                                 }
                             } while (c);
                         }
-                        else if (choise1==4){
+                        else if (choise1==5){
                             b=false;
                         }
                     }while (b);
