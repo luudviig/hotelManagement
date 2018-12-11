@@ -12,6 +12,8 @@ public class Main {
 
         //plats för variabler
         boolean a = true;
+        boolean b = true;
+        boolean c = true;
         ArrayList<Customer> arrayListCustomer = new ArrayList<>();
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
@@ -22,44 +24,100 @@ public class Main {
 
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
-            PrintMenus.viewMenu();
-            int choice = Integer.parseInt(getMethod.input.nextLine());
-            switch (choice) {
+            PrintMenus.printMenu();
+            int answer = Integer.parseInt(input.nextLine());
+            b=true;
+            switch (answer) {
                 case 1:
-                    hotelLogic.viewCustomer(arrayListCustomer);
+                    do { c=true;
+                        PrintMenus.viewMenuEmployeer1();
+                        int choise1 = Integer.parseInt(input.nextLine());
+
+                        if (choise1==1) {
+                            do {
+                                PrintMenus.viewMenuEmployerOption1();
+                                int choise2 = Integer.parseInt(input.nextLine());
+                                if (choise2 == 1) {
+                                    hotelLogic.viewCustomer(arrayListCustomer);
+                                } else if (choise2 == 2) {
+                                    arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
+                                } else if (choise2 == 3) {
+                                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
+                                } else if (choise2 == 4) {
+                                    //Edit customer information
+                                } else if (choise2 == 5) {
+                                    //View current bookings for specific customer
+                                } else if (choise2 == 6) {
+                                    //History of all bookings specific customer
+                                } else if (choise2 == 7) {
+                                    c=false;
+                                }
+                            } while (c);
+                        }
+                        else if (choise1==2){
+                            do {
+                                PrintMenus.viewMenuEmployerOption2();
+                                int choise4 = Integer.parseInt(input.nextLine());
+                                if (choise4 == 1) {
+                                    hotelLogic.viewRoom(hotelRooms);
+                                } else if (choise4 == 2) {
+                                    //view available rooms
+                                } else if (choise4 == 3) {
+                                    hotelRooms = hotelLogic.addRoom(hotelRooms);
+                                } else if (choise4 == 4) {
+                                    //remove room
+                                } else if (choise4 == 5) {
+                                    //edit room information
+                                } else if (choise4 == 6) {
+                                    c = false;
+                                }
+                            }while (c);
+                        }
+                        else if (choise1==3){
+                            do {
+                                PrintMenus.viewMenuEmployerOption3();
+                                int choise2 = Integer.parseInt(input.nextLine());
+
+                                if (choise2 == 1) {
+                                    hotelLogic.viewBookings(bookings);
+                                } else if (choise2 == 2) {
+                                   bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
+                                } else if (choise2 == 3) {
+                                    //remove booking
+                                } else if (choise2 == 4) {
+                                    hotelLogic.searchBooking(bookings);
+                                } else if (choise2 == 5) {
+
+                                } else if (choise2 == 6) {
+                                    //check in customer
+
+                                } else if (choise2 == 7) {
+                                    //check out customer
+                                }
+                                else if (choise2==8){
+                                    c=false;
+                                }
+                            } while (c);
+                        }
+                        else if (choise1==4){
+                            b=false;
+                        }
+                    }while (b);
                     break;
                 case 2:
-                    hotelLogic.viewRoom(hotelRooms);
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    hotelRooms = hotelLogic.addRoom(hotelRooms);
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    hotelLogic.editRoom(hotelRooms);
-                    break;
-                case 7:
-                    arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
-                    break;
-                case 8:
-                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
-                    break;
-                case 9:
-                    hotelLogic.viewBookings(bookings);
-                    break;
-                case 10:
-                    bookings = hotelLogic.makeBooking(bookings, arrayListCustomer, hotelRooms);
-                    break;
-                case 11:
-                    hotelLogic.viewBookings(bookings);
-                    break;
-                default:
-                    System.out.println("Incorrect input, enter a number between 1-10");
+                    PrintMenus.viewMenuCustomer();
+                    int choise2 = Integer.parseInt(input.nextLine());
+                    do {
+                        if (choise2 == 1) {
+                        } else if (choise2 == 2) {
+                        } else if (choise2 == 3) {
+                        } else if (choise2 == 4) {
+                        } else if (choise2 == 5) {
+                            b = false;
+                        }
+                    } while (b);
                     break;
             }
-        } while (a);
+        } while(a);
     }
 }
