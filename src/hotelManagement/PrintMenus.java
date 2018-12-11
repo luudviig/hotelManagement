@@ -44,8 +44,8 @@ public class PrintMenus {
         System.out.println("------Menu-----");
         System.out.println("[1] Edit room number");
         System.out.println("[2] Edit number of beds");
-        System.out.println("[3] Edit balcony");
-        System.out.println("[4] Edit price per night");
+        System.out.println("[3] Edit price per night");
+        System.out.println("[4] Edit balcony");
         System.out.println("[5] Edit is booked");
         System.out.println("[6] Edit floor number");
 

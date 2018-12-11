@@ -70,6 +70,7 @@ public class Main {
                                     //remove room
                                 } else if (choise4 == 5) {
                                     //edit room information
+                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
                                 } else if (choise4 == 6) {
                                     c = false;
                                 }
