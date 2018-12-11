@@ -32,7 +32,6 @@ public class Main {
                     do { c=true;
                         PrintMenus.viewMenuEmployeer1();
                         int choise1 = Integer.parseInt(input.nextLine());
-
                         if (choise1==1) {
                             do {
                                 PrintMenus.viewMenuEmployerOption1();
@@ -44,6 +43,8 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
+                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
+
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
