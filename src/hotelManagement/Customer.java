@@ -1,18 +1,24 @@
 package hotelManagement;
 
 public class Customer {
-    String ssn;
-    String name;
-    String address;
-    String telephoneNumber;
-    String email;
+    private final int accountNumber;
+    private static String ssn;
+    private String name;
+    private String address;
+    private String telephoneNumber;
+    private String email;
+    private String username;
+    private String password;
 
-    public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email, int accountNumber, String username, String password) {
         this.ssn = ssn;
         this.name = name;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.password = password;
     }
 
     //En jävla massa getters-Kristian
@@ -32,8 +38,17 @@ public class Customer {
         return telephoneNumber;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
+    }
+    public String getUsername()
+    {
+        return username;
+    }
+    public String getPassword()
+    {
+        return password;
     }
 
     public void setSsn(String ssn) {
@@ -56,4 +71,13 @@ public class Customer {
         this.email = email;
     }
 
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
