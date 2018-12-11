@@ -39,20 +39,40 @@ public class HotelLogic {
     }
 
     public ArrayList<Customer> addCustomer(ArrayList<Customer> arraylistcustomer) {
+
+        boolean a = true;
+        boolean b = true;
+
         int accountNumber = (arraylistcustomer.size()+1);
                     System.out.println("Account number: " + accountNumber);
-                    System.out.println("Name: ");
+                    System.out.print("Name: ");
                     String name = input.nextLine();
-                    System.out.println("SSN: ");
+                    System.out.print("SSN: ");
                     String ssn = input.nextLine();
-                    System.out.println("Email: ");
+                    System.out.print("Email: ");
                     String email = input.nextLine();
-                    System.out.println("Address: ");
+                    System.out.print("Address: ");
                     String address = input.nextLine();
-                    System.out.println("Phonenumber: ");
+                    System.out.print("Phonenumber: ");
                     String phone = input.nextLine();
-                    Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
-                    arraylistcustomer.add(customer);
+                    System.out.print("Create Username: ");
+                    String username = input.nextLine();
+                    while(b) {
+                        System.out.print("Create Password: ");
+                        String password = input.nextLine();
+                        System.out.print("Confirm Password: ");
+                        String confirmpass = input.nextLine();
+                        if (password.equals(confirmpass)) {
+                            password = confirmpass;
+                            Customer customer = new Customer(ssn,name,address,phone,email,accountNumber, username,password);
+                            arraylistcustomer.add(customer);
+                            b = false;
+                        }
+                        else
+                            {
+                                System.out.println("Incorrect password!");
+                            }
+                    }
         return arraylistcustomer;
     }
 
@@ -104,6 +124,17 @@ public class HotelLogic {
     }
 
 
+    public ArrayList<Room> removeRoom(ArrayList<Room> hotelRooms) {
+        System.out.println("Which room would you like to remove?");
+        int roomnumber = input.nextInt();
+        for (int i = 0; i < hotelRooms.size(); i++) {
+            if (hotelRooms.get(i).equals(hotelRooms.get(roomnumber - 1))) {
+                hotelRooms.remove(i);
+            }
+        }
+        return hotelRooms;
+    }
+
     public ArrayList<Room> addRoom(ArrayList<Room> hotelRooms) {
         System.out.println("How many would you like to add?");
         int userinout = input.nextInt();
@@ -154,7 +185,7 @@ public class HotelLogic {
         return bookings;
     }
 
-    //metod för att kolla alla rum som är bokade-Ludde
+    //metod för att kolla alla rum som är bokade
     public void viewBookings(ArrayList<Booking> bookings) {
         for (int i = 0; i < bookings.size(); i++) {
             System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook() + 1));
@@ -162,4 +193,74 @@ public class HotelLogic {
             System.out.println("Booked during " + bookings.get(i).getDateToBook());
         }
     }
+
+
+    //metod för att ändra information om customer
+    public ArrayList<Customer> editCustomInfo(ArrayList<Customer> customerArrayList){
+            System.out.println("Which of the following information would you like to change? \n" +
+                    "1) name \n" +
+                    "2) address \n" +
+                    "3) phonenumber \n" +
+                    "4) email \n" + 
+                    "5) username \n" +
+                    "6) password \n");
+            int choice = Integer.parseInt(input.nextLine());
+            for (int i = 0; i < customerArrayList.size(); i++) {
+                switch (choice) {
+                    case 1:
+                        System.out.println("Current name: " + customerArrayList.get(i).getName());
+                        System.out.print("New name: ");
+                        String newname = input.nextLine();
+                        customerArrayList.get(i).setName(newname);
+                        break;
+                    case 2:
+                        System.out.println("Current address: " + customerArrayList.get(i).getAddress());
+                        System.out.print("New address: ");
+                        String newaddress = input.nextLine();
+                        customerArrayList.get(i).setName(newaddress);
+                        break;
+                    case 3:
+                        System.out.println("Current phonenumber: " + customerArrayList.get(i).getTelephoneNumber());
+                        System.out.print("New phonenumber: ");
+                        String newphonenumber = input.nextLine();
+                        customerArrayList.get(i).setName(newphonenumber);
+                        break;
+                    case 4:
+                        System.out.println("Current email: " + customerArrayList.get(i).getEmail());
+                        System.out.print("New email: ");
+                        String newemail = input.nextLine();
+                        customerArrayList.get(i).setName(newemail);
+                        break;
+                    case 5:
+                        System.out.println("Current username: " + customerArrayList.get(i).getUsername());
+                        System.out.print("New username: ");
+                        String newusername = input.nextLine();
+                        System.out.println("Confirm new username: ");
+                        String confirmnewusername = input.nextLine();
+                        if (newusername.equals(confirmnewusername)) {
+                            customerArrayList.get(i).setName(newusername);
+                        } else {
+                            System.out.println("Username doesn't match!");
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Current password: " + customerArrayList.get(i).getPassword());
+                        System.out.println("New password: ");
+                        String newpassword = input.nextLine();
+                        System.out.println("Confirm new password: ");
+                        String confirmnewpassword = input.nextLine();
+                        if (newpassword.equals(confirmnewpassword)) {
+                            customerArrayList.get(i).setName(newpassword);
+                        } else {
+                            System.out.println("Username doesn't match!");
+                        }
+                        customerArrayList.get(i).setName(newpassword);
+                    default:
+                        System.out.println("Invalid choice!");
+                        break;
+                }
+            }
+        return customerArrayList;
+    }
 }
+
