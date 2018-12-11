@@ -11,7 +11,7 @@ public class HotelLogic {
         String dateToSearchFor = input.nextLine();
 
         for (int i = 0; i<bookings.size(); i++){
-            if (bookings.get(i).getDateToBook() == dateToSearchFor){
+            if (bookings.get(i).getDateToBook().equals(dateToSearchFor)){
                 System.out.println("Booking belons to account: " + bookings.get(i).getAccountNumber());
                 System.out.println("Booked during: " + bookings.get(i).getDateToBook());
                 System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook());
@@ -100,16 +100,16 @@ public class HotelLogic {
             System.out.println("HOTEL ROOM: " + hotelRooms.get(i).getRoomNumber());
             System.out.println("Amount of beds: " + hotelRooms.get(i).getNumberOfBeds());
             System.out.println("Price per night: " + hotelRooms.get(i).getPricePerNight());
-            if (hotelRooms.get(i).isHasBalcony()==true){
+            if (hotelRooms.get(i).isHasBalcony()){
                 System.out.println("Balcony: Yes");
             }
-            else if (hotelRooms.get(i).isHasBalcony()==false){
+            else if (!hotelRooms.get(i).isHasBalcony()){
                 System.out.println("Balcony: No");
             }
-            if (hotelRooms.get(i).isBooked()==true){
+            if (hotelRooms.get(i).isBooked()){
                 System.out.println("Already booked: Yes");
             }
-            else if (hotelRooms.get(i).isBooked()==false){
+            else if (!hotelRooms.get(i).isBooked()){
                 System.out.println("Already booked: No");
             }
             System.out.println("Floor: " + hotelRooms.get(i).getFloor());
@@ -246,12 +246,12 @@ public class HotelLogic {
             if (accountNumber<=0){
                 System.out.println("Error, please type in an account number greater than 0..");
             }
-            else if (arrayListCustomer.get(i).getAccountNumber() == accountNumber && hotelRooms.get(roomToBook-1).isBooked() ==false){
+            else if (arrayListCustomer.get(i).getAccountNumber() == accountNumber && !hotelRooms.get(roomToBook-1).isBooked()){
                 Booking booking = new Booking(roomToBook-1,dateToBook,accountNumber);
                 bookings.add(booking);
                 hotelRooms.get(roomToBook-1).setBooked(true);
             }
-            else if(hotelRooms.get(roomToBook-1).isBooked()==true){
+            else if(hotelRooms.get(roomToBook-1).isBooked()){
                 System.out.println("The room you wish to book is already taken..");
             }
             else if(arrayListCustomer.get(i).getAccountNumber()==0){
@@ -267,6 +267,56 @@ public class HotelLogic {
             System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook()+1));
             System.out.println("Booked by account: " + bookings.get(i).getAccountNumber());
             System.out.println("Booked during " + bookings.get(i).getDateToBook());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void viewInfoAboutCustomer(ArrayList<Customer>currentBooking){
+        for (int i = 0; i < currentBooking.size(); i++) {
+            System.out.println("***Current Booking(s)***");
+            System.out.println("Account Number: " + currentBooking.get(i).getAccountNumber());
+            System.out.println("Name:  " + currentBooking.get(i).getName());
+            System.out.println("Social Security number: " + currentBooking.get(i).getSsn());
+            System.out.println("Email:  " + currentBooking.get(i).getEmail());
+            System.out.println("Address: " + currentBooking.get(i).getAddress());
+            System.out.println("Phone number: " + currentBooking.get(i).getTelephoneNumber());
+            System.out.println();
+        }
+
+        System.out.println("***Previous Booking(s)***");
+
+
+        for (int i = 0; i < currentBooking.size(); i++) {
+            int previousBooking = currentBooking.size();
+
+
+        System.out.println("Previous booking: " + previousBooking);
         }
     }
 }

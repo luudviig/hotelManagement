@@ -17,6 +17,7 @@ public class Main {
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
 
+
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
 
@@ -54,6 +55,9 @@ public class Main {
                     break;
                 case 11:
                     hotelLogic.viewBookings(bookings);
+                    break;
+                case 12:
+                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer);
                     break;
                 default:
                     System.out.println("Incorrect input, enter a number between 1-10");
