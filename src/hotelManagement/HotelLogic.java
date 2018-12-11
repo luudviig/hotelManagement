@@ -218,26 +218,5 @@ public class HotelLogic {
 
 
 
-    public void viewInfoAboutCustomer(ArrayList<Customer>currentBooking){
-        for (int i = 0; i < currentBooking.size(); i++) {
-            System.out.println("***Current Booking(s)***");
-            System.out.println("Account Number: " + currentBooking.get(i).getAccountNumber());
-            System.out.println("Name:  " + currentBooking.get(i).getName());
-            System.out.println("Social Security number: " + currentBooking.get(i).getSsn());
-            System.out.println("Email:  " + currentBooking.get(i).getEmail());
-            System.out.println("Address: " + currentBooking.get(i).getAddress());
-            System.out.println("Phone number: " + currentBooking.get(i).getTelephoneNumber());
-            System.out.println();
-        }
 
-        System.out.println("***Previous Booking(s)***");
-
-
-        for (int i = 0; i < currentBooking.size(); i++) {
-            int previousBooking = currentBooking.size();
-
-
-        System.out.println("Previous booking: " + previousBooking);
-        }
-    }
 }
