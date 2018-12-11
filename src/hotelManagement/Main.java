@@ -8,6 +8,7 @@ public class Main {
     public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         Main getMethod = new Main();
 
         //plats för variabler
@@ -18,6 +19,7 @@ public class Main {
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
+
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
@@ -32,7 +34,6 @@ public class Main {
                     do { c=true;
                         PrintMenus.viewMenuEmployeer1();
                         int choise1 = Integer.parseInt(input.nextLine());
-
                         if (choise1==1) {
                             do {
                                 PrintMenus.viewMenuEmployerOption1();
@@ -44,12 +45,15 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
-                                    //Edit customer information
+                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
+
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
                                     //History of all bookings specific customer
                                 } else if (choise2 == 7) {
+                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,bookings);
+                                } else if (choise2 == 8){
                                     c=false;
                                 }
                             } while (c);
@@ -68,6 +72,7 @@ public class Main {
                                     //remove room
                                 } else if (choise4 == 5) {
                                     //edit room information
+                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
                                 } else if (choise4 == 6) {
                                     c = false;
                                 }
@@ -99,7 +104,7 @@ public class Main {
                                 }
                             } while (c);
                         }
-                        else if (choise1==4){
+                        else if (choise1==5){
                             b=false;
                         }
                     }while (b);
@@ -122,6 +127,6 @@ public class Main {
                     a=false;
                     break;
             }
-        } while (a);
+        } while(a);
     }
 }

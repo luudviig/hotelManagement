@@ -21,11 +21,17 @@ public class Room {
         return roomNumber;
     }
 
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     public int getFloor() { return floor; }
+    public int setFloor(int floor){return floor;}
 
     public int getNumberOfBeds() {
         return numberOfBeds;
     }
+
 
     public boolean isHasBalcony() {
         return hasBalcony;
@@ -39,6 +45,7 @@ public class Room {
         return isBooked;
     }
 
+
     public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }
@@ -51,5 +58,9 @@ public class Room {
         isBooked = booked;
     }
 
-
+    public void setPricePerNight(double pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
 }
+
+
