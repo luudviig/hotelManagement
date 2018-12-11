@@ -20,4 +20,4 @@ public class Main {
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
-    }
+    }}
