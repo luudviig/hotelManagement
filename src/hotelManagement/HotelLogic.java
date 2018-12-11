@@ -154,7 +154,7 @@ public class HotelLogic {
         return bookings;
     }
 
-    //metod för att kolla alla rum som är bokade
+    //metod för att kolla alla rum som är bokade-Ludde
     public void viewBookings(ArrayList<Booking> bookings) {
         for (int i = 0; i < bookings.size(); i++) {
             System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook() + 1));

@@ -117,6 +117,10 @@ public class Main {
                         }
                     } while (b);
                     break;
+                case 3:
+                    PrintMenus.printByeMessage();
+                    a=false;
+                    break;
             }
         } while (a);
     }

@@ -1,11 +1,15 @@
 package hotelManagement;
 
 public class PrintMenus {
+    public static void printByeMessage(){
+        System.out.println("Have a good day! ");
+    }
 
     public static void printMenu() {
         System.out.println("----Login Menu----");
         System.out.println("[1] Employee ");
         System.out.println("[2] Customer ");
+        System.out.println("[3] Exit program");
     }
 
     public static void viewMenuCustomer() {
