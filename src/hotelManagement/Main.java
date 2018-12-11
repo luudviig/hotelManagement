@@ -23,7 +23,6 @@ public class Main {
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
 
-        //skapar en loop som loopar tills man "exitar"-Ludde
         do {
             PrintMenus.printMenu();
             int answer = Integer.parseInt(input.nextLine());
@@ -45,12 +44,13 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
-                                    //Edit customer information
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
                                     //History of all bookings specific customer
                                 } else if (choise2 == 7) {
+                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,bookings);
+                                } else if (choise2 == 8){
                                     c=false;
                                 }
                             } while (c);
@@ -100,7 +100,7 @@ public class Main {
                                 }
                             } while (c);
                         }
-                        else if (choise1==4){
+                        else if (choise1==5){
                             b=false;
                         }
                     }while (b);
@@ -119,39 +119,8 @@ public class Main {
                     } while (b);
                     break;
                 case 3:
-
-                    break;
-                case 4:
-                    hotelRooms = hotelLogic.addRoom(hotelRooms);
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    arrayListCustomer = hotelLogic.addCustomer(arrayListCustomer);
-                    break;
-                case 8:
-                    arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
-                    break;
-                case 9:
-                    hotelLogic.viewBookings(bookings);
-                    break;
-                case 10:
-                    bookings = hotelLogic.makeBooking(bookings, arrayListCustomer, hotelRooms);
-                    break;
-                case 11:
-                    hotelLogic.viewBookings(bookings);
-                    break;
-                case 12:
-                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer);
-                    break;
-                default:
-                    System.out.println("Incorrect input, enter a number between 1-10");
-
                     PrintMenus.printByeMessage();
                     a=false;
-
                     break;
             }
         } while (a);
