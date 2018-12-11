@@ -42,6 +42,18 @@ public class PrintMenus {
         System.out.println("[8] Back");
     }
 
+    public static void menuForEditRoomInfo(){
+        System.out.println("------Menu-----");
+        System.out.println("[1] Edit room number");
+        System.out.println("[2] Edit number of beds");
+        System.out.println("[3] Edit price per night");
+        System.out.println("[4] Edit balcony");
+        System.out.println("[5] Edit is booked");
+        System.out.println("[6] Edit floor number");
+
+    }
+
+
     public static void viewMenuEmployerOption2() {
         System.out.println("[1] View rooms");
         System.out.println("[2] View available rooms");
@@ -61,5 +73,6 @@ public class PrintMenus {
         System.out.println("[7] check out customer");
         System.out.println("[8] Back");
     }
+
 }
 

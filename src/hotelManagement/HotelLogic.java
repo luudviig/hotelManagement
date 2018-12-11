@@ -134,7 +134,6 @@ public class HotelLogic {
         }
     }
 
-
     public ArrayList<Room> removeRoom(ArrayList<Room> hotelRooms) {
         System.out.println("Which room would you like to remove?");
         int roomnumber = input.nextInt();
@@ -155,12 +154,13 @@ public class HotelLogic {
             System.out.println("Does the room has a balcony? true/false ");
             Boolean balcony = input.nextBoolean();
             System.out.println("What is the price of the room? ");
-            int pricePerNigth = input.nextInt();
+            int pricePerNight = input.nextInt();
             System.out.println("Which floor?");
             int floor = input.nextInt();
-            Room room = new Room(i + 1, amountOfBeds, balcony, pricePerNigth, false, floor);
+            Room room = new Room(i+1, amountOfBeds, balcony, pricePerNight, false, floor);
             hotelRooms.add(room);
         }
+
         return hotelRooms;
     }
 
@@ -205,11 +205,9 @@ public class HotelLogic {
         }
     }
 
-
     public void viewInfoAboutCustomer(ArrayList<Customer> arrayListCustomer, ArrayList<Booking> bookings) {
         System.out.println("Enter Account number you would like to see info about: ");
         int customerToSee = Integer.parseInt(input.nextLine());
-
         System.out.println("***Current Booking(s)***");
         for (int i = 0; i < bookings.size(); i++) {
             if (bookings.get(i).getAccountNumber() == customerToSee) {
@@ -219,6 +217,72 @@ public class HotelLogic {
             }
         }
     }
+
+// redigera info om rum - Kristian
+ public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
+     System.out.println("Enter the room number you want to edit: ");
+     int roomNumber = Integer.parseInt(input.nextLine());
+     for (int j = 0; j < hotelRooms.size(); j++) {
+         if (hotelRooms.get(j).getRoomNumber() == roomNumber) {
+             PrintMenus.menuForEditRoomInfo();
+         }
+     }
+         int answer = Integer.parseInt(input.nextLine());
+             for (int i = 0; i < hotelRooms.size(); i++) {
+                 switch (answer) {
+                     case 1:
+                         System.out.println("Which number would you like the room to get? ");
+                         int newRoomNumber = Integer.parseInt(input.nextLine());
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setRoomNumber(newRoomNumber);
+                         }
+                         break;
+                     case 2:
+                         System.out.println("How many beds are there in this room? ");
+                         int newNumberOfBeds = Integer.parseInt(input.nextLine());
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setNumberOfBeds(newNumberOfBeds);
+                         }
+
+                         break;
+                     case 3:
+                         System.out.println("What will the price per night be?");
+                         int newPricePerNight = Integer.parseInt(input.nextLine());
+                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                                 hotelRooms.get(i).setPricePerNight(newPricePerNight);
+                             }
+
+                         break;
+                     case 4:
+                         System.out.println("Does the room have a balcony?(true/false) ");
+                         boolean newHasBalcony = input.nextBoolean();
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setHasBalcony(newHasBalcony);
+                         }
+
+                         break;
+                     case 5:
+                         System.out.println("Is the room booked or not?(true/false)");
+                         boolean newIsBooked = input.nextBoolean();
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setBooked(newIsBooked);
+                         }
+
+                         break;
+                     case 6:
+                         System.out.println("Which floor is the room located in? ");
+                         int newFloor = input.nextInt();
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setFloor(newFloor);
+                         }
+                         break;
+                     default:
+                         System.out.println("Incorrect input, enter a number between 1-6 ");
+                         break;
+                 }
+             }
+     return hotelRooms;
+ }
 
         //metod för att ändra information om customer
         public ArrayList<Customer> editCustomInfo (ArrayList < Customer > customerArrayList) {
@@ -288,6 +352,3 @@ public class HotelLogic {
             return customerArrayList;
         }
 }
-
-
-

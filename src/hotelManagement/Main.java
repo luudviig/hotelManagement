@@ -8,6 +8,7 @@ public class Main {
     public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         Main getMethod = new Main();
 
         //plats för variabler
@@ -23,6 +24,9 @@ public class Main {
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
 
+
+
+        //skapar en loop som loopar tills man "exitar"-Ludde
         do {
             PrintMenus.printMenu();
             int answer = Integer.parseInt(input.nextLine());
@@ -70,6 +74,7 @@ public class Main {
                                     //remove room
                                 } else if (choise4 == 5) {
                                     //edit room information
+                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
                                 } else if (choise4 == 6) {
                                     c = false;
                                 }
@@ -124,6 +129,6 @@ public class Main {
                     a=false;
                     break;
             }
-        } while (a);
+        } while(a);
     }
 }
