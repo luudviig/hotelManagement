@@ -201,7 +201,7 @@ public class HotelLogic {
                     "1) name \n" +
                     "2) address \n" +
                     "3) phonenumber \n" +
-                    "4) email \n" + 
+                    "4) email \n" +
                     "5) username \n" +
                     "6) password \n");
             int choice = Integer.parseInt(input.nextLine());
