@@ -72,6 +72,7 @@ public class Main {
                                     hotelRooms = hotelLogic.addRoom(hotelRooms);
                                 } else if (choise4 == 4) {
                                     //remove room
+                                    hotelRooms = hotelLogic.removeRoom(hotelRooms);
                                 } else if (choise4 == 5) {
                                     //edit room information
                                     hotelRooms = hotelLogic.editRoom(hotelRooms);
@@ -84,7 +85,6 @@ public class Main {
                             do {
                                 PrintMenus.viewMenuEmployerOption3();
                                 int choise2 = Integer.parseInt(input.nextLine());
-
                                 if (choise2 == 1) {
                                     hotelLogic.viewBookings(bookings);
                                 } else if (choise2 == 2) {
