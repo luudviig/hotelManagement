@@ -1,11 +1,9 @@
 package hotelManagement;
-
 import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Formatter;
 
 public class CreateFile {
@@ -23,10 +21,10 @@ public class CreateFile {
         }
     }
 
-    public void addRecords(ArrayList<Booking> bookings){
-        for (int i=0; i<bookings.size();i++) {
-            x.format("Account number: %d, Room booked: %d, Booked the date: %s", bookings.get(i).getAccountNumber(),
-                    (bookings.get(i).getHotelRoomToBook()+1), bookings.get(i).getDateToBook() + "\n");
+    public void addRecord(Booking booking){
+        {
+            x.format("Account number: %d, Room booked: %d, Booked the date: %s", booking.getAccountNumber(),
+                    (booking.getHotelRoomToBook()+1), booking.getDateToBook() + "\n");
         }
     }
 

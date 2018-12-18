@@ -1,0 +1,5 @@
+Account number: 1, Room booked: 3, Booked the date: 2018-12-30
+Account number: 1, Room booked: 4, Booked the date: 2018-12-12
+Account number: 1, Room booked: 5, Booked the date: 2018-12-13
+Account number: 1, Room booked: 7, Booked the date: 2018-12-31
+Account number: 1, Room booked: 2, Booked the date: 2018-12-29
