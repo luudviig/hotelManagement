@@ -26,7 +26,7 @@ public class Room {
     }
 
     public int getFloor() { return floor; }
-    public int setFloor(int floor){return floor;}
+    public void setFloor(int floor){this.floor = floor;}
 
     public int getNumberOfBeds() {
         return numberOfBeds;
