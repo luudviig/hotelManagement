@@ -8,13 +8,14 @@ public class Main {
     public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         Main getMethod = new Main();
 
         //plats för variabler
         boolean a = true;
         boolean b = true;
         boolean c = true;
+        CreateFile createFile = new CreateFile();
+        ReadFile readFile = new ReadFile();
         ArrayList<Customer> arrayListCustomer = new ArrayList<>();
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
@@ -23,7 +24,8 @@ public class Main {
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
-
+        //Kallar på metod som skapar en customer.
+        hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
 
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
@@ -46,8 +48,7 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
-
-
+//                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
@@ -69,13 +70,13 @@ public class Main {
                                     //view available rooms
                                     hotelLogic.availableRooms(hotelRooms);
                                 } else if (choise4 == 3) {
-                                    hotelRooms = hotelLogic.addRoom(hotelRooms);
+                                    //add room
                                 } else if (choise4 == 4) {
                                     //remove room
                                     hotelRooms = hotelLogic.removeRoom(hotelRooms);
                                 } else if (choise4 == 5) {
                                     //edit room information
-                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
+//                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
                                 } else if (choise4 == 6) {
                                     c = false;
                                 }
@@ -86,9 +87,15 @@ public class Main {
                                 PrintMenus.viewMenuEmployerOption3();
                                 int choise2 = Integer.parseInt(input.nextLine());
                                 if (choise2 == 1) {
-                                     hotelLogic.viewBookings(bookings);
+                                readFile.openFile();
+                                readFile.readFile();
+                                readFile.closeFile();
                                 } else if (choise2 == 2) {
                                    bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
+                                   createFile.openFile();
+                                   createFile.addRecords(bookings);
+                                   createFile.closeFile();
+
                                 } else if (choise2 == 3) {
                                     //remove booking
                                 } else if (choise2 == 4) {

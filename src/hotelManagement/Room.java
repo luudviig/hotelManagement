@@ -45,7 +45,6 @@ public class Room {
         return isBooked;
     }
 
-
     public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }
