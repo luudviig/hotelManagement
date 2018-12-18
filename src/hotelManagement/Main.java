@@ -48,7 +48,7 @@ public class Main {
                                 } else if (choise2 == 3) {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
-//                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
+                                   arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
@@ -67,16 +67,13 @@ public class Main {
                                 if (choise4 == 1) {
                                     hotelLogic.viewRoom(hotelRooms);
                                 } else if (choise4 == 2) {
-                                    //view available rooms
                                     hotelLogic.availableRooms(hotelRooms);
                                 } else if (choise4 == 3) {
-                                    //add room
+                                    hotelRooms = hotelLogic.addRoom(hotelRooms);
                                 } else if (choise4 == 4) {
-                                    //remove room
                                     hotelRooms = hotelLogic.removeRoom(hotelRooms);
                                 } else if (choise4 == 5) {
-                                    //edit room information
-//                                    hotelRooms = hotelLogic.editRoom(hotelRooms);
+                                   hotelRooms = hotelLogic.editRoom(hotelRooms);
                                 } else if (choise4 == 6) {
                                     c = false;
                                 }
