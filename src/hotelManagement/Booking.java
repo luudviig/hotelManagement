@@ -1,9 +1,12 @@
 package hotelManagement;
 
+
 public class Booking {
     private int hotelRoomToBook;
     private String dateToBook;
     private int accountNumber;
+
+
 
     public Booking(int hotelRoomToBook,String dateToBook, int accountNumber) {
         this.hotelRoomToBook = hotelRoomToBook;
