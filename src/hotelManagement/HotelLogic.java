@@ -31,17 +31,17 @@ public class HotelLogic {
     public ArrayList<Room> createArrayListOfRooms(ArrayList<Room> hotelRooms) {
         //adds rooms for floor 1-Ludde
         for (int i = 0; i < 3; i++) {
-            Room room = new Room((i + 1), 1, false, 2000, false, 1);
+            Room room = new Room((i + 1), 1, false, 2000, "", 1);
             hotelRooms.add(room);
         }
         //adds rooms for floor 2-Ludde
         for (int i = 3; i < 6; i++) {
-            Room room = new Room((i + 1), 2, true, 2500, false, 2);
+            Room room = new Room((i + 1), 2, true, 2500, "", 2);
             hotelRooms.add(room);
         }
         //adds rooms for floor 3-Ludde
         for (int i = 6; i < 9; i++) {
-            Room room = new Room((i + 1), 2, true, 2700, false, 3);
+            Room room = new Room((i + 1), 2, true, 2700, "", 3);
             hotelRooms.add(room);
         }
         return hotelRooms;
@@ -158,9 +158,9 @@ public class HotelLogic {
             } else if (hotelRooms.get(i).isHasBalcony() == false) {
                 System.out.println("Balcony: No");
             }
-            if (hotelRooms.get(i).isBooked() == true) {
+            if (hotelRooms.get(i).getIsBooked().length() > 0) {
                 System.out.println("Already booked: Yes");
-            } else if (hotelRooms.get(i).isBooked() == false) {
+            } else if (hotelRooms.get(i).getIsBooked().length() == 0) {
                 System.out.println("already booked: no");
             }
             System.out.println("Floor: " + hotelRooms.get(i).getFloor());
@@ -196,9 +196,9 @@ public class HotelLogic {
                 if (roomToBook >= hotelRooms.size()) {
                     System.out.println("Input has to be greater than 0, not booked and existing in system..");
                 } else if (roomToBook >= 1 && roomToBook <= hotelRooms.size() - 1) {
-                    if (roomToBook <= 0 || hotelRooms.get(roomToBook).isBooked()) {
+                    if (roomToBook <= 0 || hotelRooms.get(roomToBook).getIsBooked().length()>0) {
                         System.out.println("Input has to be greater than 0, not booked and existing in system..");
-                    } else if (roomToBook >= 1 && roomToBook <= hotelRooms.size() + 1 && !hotelRooms.get(roomToBook).isBooked()) {
+                    } else if (roomToBook >= 1 && roomToBook <= hotelRooms.size() + 1 && hotelRooms.get(roomToBook).getIsBooked().length()==0) {
                         a = false;
                     }
                 }
@@ -234,7 +234,7 @@ public class HotelLogic {
     }
 
     //metod för att kolla alla rum som är bokade
-    public void viewBookings (ArrayList < Booking > bookings) {
+    public void viewBookings(ArrayList<Booking> bookings) {
         for (int i = 0; i < bookings.size(); i++) {
             System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook() + 1));
             System.out.println("Booked by account: " + bookings.get(i).getAccountNumber());
@@ -242,7 +242,7 @@ public class HotelLogic {
         }
     }
 
-    public void viewInfoAboutCustomer (ArrayList < Customer > arrayListCustomer, ArrayList < Booking > bookings){
+    public void viewInfoAboutCustomer(ArrayList<Customer> arrayListCustomer, ArrayList<Booking> bookings) {
         System.out.println("Enter Account number you would like to see info about: ");
         int customerToSee = Integer.parseInt(input.nextLine());
         System.out.println("***Current Booking(s)***");
@@ -265,7 +265,7 @@ public class HotelLogic {
     public void availableRooms(ArrayList<Room> hotelrooms) {
         System.out.println("All the available rooms: ");
         for (int i = 0; i < hotelrooms.size(); i++) {
-            if (hotelrooms.get(i).isBooked() == false) {
+            if (hotelrooms.get(i).getIsBooked().length() == 0) {
                 System.out.println(hotelrooms.get(i).getRoomNumber());
             }
         }
@@ -391,4 +391,4 @@ public class HotelLogic {
             }
         }
     }
-    }
+}
