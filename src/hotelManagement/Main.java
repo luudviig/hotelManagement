@@ -20,7 +20,7 @@ public class Main {
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
-
+        ArrayList<Booking> preBooking = bookings;
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
@@ -49,13 +49,12 @@ public class Main {
                                     arrayListCustomer = hotelLogic.removeCustomer(arrayListCustomer, bookings);
                                 } else if (choise2 == 4) {
 //                                    arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
-
                                 } else if (choise2 == 5) {
                                     //View current bookings for specific customer
                                 } else if (choise2 == 6) {
                                     //History of all bookings specific customer
                                 } else if (choise2 == 7) {
-//                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,bookings);
+                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,preBooking);
                                 } else if (choise2 == 8){
                                     c=false;
                                 }
@@ -69,8 +68,9 @@ public class Main {
                                     hotelLogic.viewRoom(hotelRooms);
                                 } else if (choise4 == 2) {
                                     //view available rooms
+                                    hotelLogic.availableRooms(hotelRooms);
                                 } else if (choise4 == 3) {
-                                    hotelRooms = hotelLogic.addRoom(hotelRooms);
+                                    //add room
                                 } else if (choise4 == 4) {
                                     //remove room
                                     hotelRooms = hotelLogic.removeRoom(hotelRooms);
@@ -103,10 +103,9 @@ public class Main {
                                 } else if (choise2 == 5) {
 
                                 } else if (choise2 == 6) {
-                                    //check in customer
-
+                                    hotelLogic.checkIn(bookings);
                                 } else if (choise2 == 7) {
-                                    //check out customer
+                                    hotelLogic.checkOut(bookings);
                                 }
                                 else if (choise2==8){
                                     c=false;
@@ -123,6 +122,7 @@ public class Main {
                     int choise2 = Integer.parseInt(input.nextLine());
                     do {
                         if (choise2 == 1) {
+                            hotelLogic.availableRooms(hotelRooms);
                         } else if (choise2 == 2) {
                         } else if (choise2 == 3) {
                         } else if (choise2 == 4) {
@@ -137,5 +137,6 @@ public class Main {
                     break;
             }
         } while(a);
+
     }
 }
