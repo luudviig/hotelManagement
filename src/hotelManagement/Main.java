@@ -19,11 +19,10 @@ public class Main {
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
-
+        ArrayList<Booking> preBooking = bookings;
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
-
 
 
         //skapar en loop som loopar tills man "exitar"-Ludde
@@ -54,7 +53,7 @@ public class Main {
                                 } else if (choise2 == 6) {
                                     //History of all bookings specific customer
                                 } else if (choise2 == 7) {
-                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,bookings);
+                                    hotelLogic.viewInfoAboutCustomer(arrayListCustomer,preBooking);
                                 } else if (choise2 == 8){
                                     c=false;
                                 }
@@ -86,7 +85,7 @@ public class Main {
                                 PrintMenus.viewMenuEmployerOption3();
                                 int choise2 = Integer.parseInt(input.nextLine());
                                 if (choise2 == 1) {
-                                    hotelLogic.viewBookings(bookings);
+                                     hotelLogic.viewBookings(bookings);
                                 } else if (choise2 == 2) {
                                    bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
                                 } else if (choise2 == 3) {
@@ -96,10 +95,9 @@ public class Main {
                                 } else if (choise2 == 5) {
 
                                 } else if (choise2 == 6) {
-                                    //check in customer
-
+                                    hotelLogic.checkIn(bookings);
                                 } else if (choise2 == 7) {
-                                    //check out customer
+                                    hotelLogic.checkOut(bookings);
                                 }
                                 else if (choise2==8){
                                     c=false;
@@ -130,5 +128,6 @@ public class Main {
                     break;
             }
         } while(a);
+
     }
 }
