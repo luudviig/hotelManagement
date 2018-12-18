@@ -116,22 +116,21 @@ public class HotelLogic {
             if (hotelRooms.get(i).isBooked()) {
                 System.out.println("Already booked: Yes");
             } else if (!hotelRooms.get(i).isBooked()) {
-
-                if (hotelRooms.get(i).isHasBalcony() == true) {
-                    System.out.println("Balcony: Yes");
-                } else if (hotelRooms.get(i).isHasBalcony() == false) {
-                    System.out.println("Balcony: No");
-                }
-                if (hotelRooms.get(i).isBooked() == true) {
-                    System.out.println("Already booked: Yes");
-                } else if (hotelRooms.get(i).isBooked() == false) {
-
                     System.out.println("Already booked: No");
-                }
-                System.out.println("Floor: " + hotelRooms.get(i).getFloor());
-                System.out.println();
+            }
+            System.out.println("Floor: " + hotelRooms.get(i).getFloor());
+            System.out.println();
             }
         }
+
+        //view available rooms - Kristian
+        public void availableRooms(ArrayList<Room> hotelRooms) {
+            System.out.println("All the available rooms: ");
+            for (int i = 0; i < hotelRooms.size(); i++) {
+                 if (hotelRooms.get(i).isBooked() == false){
+                     System.out.println((hotelRooms.get(i).getRoomNumber()));
+                 }
+      }
     }
 
     public ArrayList<Room> removeRoom(ArrayList<Room> hotelRooms) {
@@ -219,16 +218,15 @@ public class HotelLogic {
     }
 
 // redigera info om rum - Kristian
- public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
+ public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms){
      System.out.println("Enter the room number you want to edit: ");
      int roomNumber = Integer.parseInt(input.nextLine());
+
      for (int j = 0; j < hotelRooms.size(); j++) {
          if (hotelRooms.get(j).getRoomNumber() == roomNumber) {
              PrintMenus.menuForEditRoomInfo();
-         }
-     }
          int answer = Integer.parseInt(input.nextLine());
-             for (int i = 0; i < hotelRooms.size(); i++) {
+             for (int i = 0; i < 1; i++) {
                  switch (answer) {
                      case 1:
                          System.out.println("Which number would you like the room to get? ");
@@ -248,24 +246,22 @@ public class HotelLogic {
                      case 3:
                          System.out.println("What will the price per night be?");
                          int newPricePerNight = Integer.parseInt(input.nextLine());
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setPricePerNight(newPricePerNight);
-                             }
+                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                             hotelRooms.get(i).setPricePerNight(newPricePerNight);
+                         }
 
                          break;
                      case 4:
                          System.out.println("Does the room have a balcony?(true/false) ");
                          boolean newHasBalcony = input.nextBoolean();
-                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
                              hotelRooms.get(i).setHasBalcony(newHasBalcony);
-                         }
-
                          break;
                      case 5:
                          System.out.println("Is the room booked or not?(true/false)");
                          boolean newIsBooked = input.nextBoolean();
                          if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
                              hotelRooms.get(i).setBooked(newIsBooked);
+
                          }
 
                          break;
@@ -281,6 +277,11 @@ public class HotelLogic {
                          break;
                  }
              }
+         }
+         else if (roomNumber>hotelRooms.size()){
+             System.out.println("Room number does not exist");
+         }
+     }
      return hotelRooms;
  }
 

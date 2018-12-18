@@ -68,6 +68,7 @@ public class Main {
                                     hotelLogic.viewRoom(hotelRooms);
                                 } else if (choise4 == 2) {
                                     //view available rooms
+                                    hotelLogic.availableRooms(hotelRooms);
                                 } else if (choise4 == 3) {
                                     hotelRooms = hotelLogic.addRoom(hotelRooms);
                                 } else if (choise4 == 4) {
@@ -106,7 +107,7 @@ public class Main {
                                 }
                             } while (c);
                         }
-                        else if (choise1==5){
+                        else if (choise1==4){
                             b=false;
                         }
                     }while (b);
@@ -116,6 +117,7 @@ public class Main {
                     int choise2 = Integer.parseInt(input.nextLine());
                     do {
                         if (choise2 == 1) {
+                            hotelLogic.availableRooms(hotelRooms);
                         } else if (choise2 == 2) {
                         } else if (choise2 == 3) {
                         } else if (choise2 == 4) {
