@@ -73,6 +73,13 @@ public class PrintMenus {
         System.out.println("[7] check out customer");
         System.out.println("[8] Back");
     }
+  public static void checkIncheckOut(){
+      System.out.println(
+              "[1] Check-In\n" +
+              "[2] Check-Out\n"+
+              "[3] back\n"
+      );
+  }
 
 }
 

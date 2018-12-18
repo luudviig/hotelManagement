@@ -1,5 +1,6 @@
 package hotelManagement;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class HotelLogic {
         String email = input.nextLine();
         System.out.print("Address: ");
         String address = input.nextLine();
-        System.out.print("Phonenumber: ");
+        System.out.print("Phone number: ");
         String phone = input.nextLine();
         System.out.print("Create Username: ");
         String username = input.nextLine();
@@ -91,11 +92,9 @@ public class HotelLogic {
         System.out.println("Enter account number of person to remove: ");
         int accountNumber = Integer.parseInt(input.nextLine());
         for (int i = 0; i < arraylistcustomer.size(); i++) {
-            if (bookings.get(i).getAccountNumber() == accountNumber) {
-                System.out.println("Not possible to remove this customer since the cusomter already has booked a room..");
-                arraylistcustomer = arraylistcustomer;
-            } else if (arraylistcustomer.get(i).getAccountNumber() == accountNumber) {
+            if (arraylistcustomer.get(i).getAccountNumber() == accountNumber) {
                 arraylistcustomer.remove(i);
+                break;
             }
         }
         return arraylistcustomer;
@@ -108,20 +107,20 @@ public class HotelLogic {
             System.out.println("Amount of beds: " + hotelRooms.get(i).getNumberOfBeds());
             System.out.println("Price per night: " + hotelRooms.get(i).getPricePerNight());
 
-                if (hotelRooms.get(i).isHasBalcony() == true) {
-                    System.out.println("Balcony: Yes");
-                } else if (hotelRooms.get(i).isHasBalcony() == false) {
-                    System.out.println("Balcony: No");
-                }
-                if (hotelRooms.get(i).isBooked() == true) {
-                    System.out.println("Already booked: Yes");
-                } else if (hotelRooms.get(i).isBooked() == false) {
-                    System.out.println("Already booked: No");
-                }
-                System.out.println("Floor: " + hotelRooms.get(i).getFloor());
-                System.out.println();
+            if (hotelRooms.get(i).isHasBalcony()) {
+                System.out.println("Balcony: Yes");
+            } else if (!hotelRooms.get(i).isHasBalcony()) {
+                System.out.println("Balcony: No");
             }
+            if (hotelRooms.get(i).isBooked()) {
+                System.out.println("Already booked: Yes");
+            } else if (!hotelRooms.get(i).isBooked()) {
+                System.out.println("Already booked: No");
+            }
+            System.out.println("Floor: " + hotelRooms.get(i).getFloor());
+            System.out.println();
         }
+    }
 
     public ArrayList<Room> removeRoom(ArrayList<Room> hotelRooms) {
         System.out.println("Which room would you like to remove?");
@@ -146,7 +145,7 @@ public class HotelLogic {
             int pricePerNight = input.nextInt();
             System.out.println("Which floor?");
             int floor = input.nextInt();
-            Room room = new Room(hotelRooms.size()+1, amountOfBeds, balcony, pricePerNight, false, floor);
+            Room room = new Room(hotelRooms.size() + 1, amountOfBeds, balcony, pricePerNight, false, floor);
             hotelRooms.add(room);
         }
 
@@ -155,10 +154,11 @@ public class HotelLogic {
 
     //metod för att boka rum till customer -Ludde
     public ArrayList<Booking> makeBooking(ArrayList<Booking> bookings, ArrayList<Customer> arrayListCustomer, ArrayList<Room> hotelRooms) {
-        System.out.println("Which room would you like to book? ");
-        int roomToBook = Integer.parseInt(input.nextLine()) - 1;
+
         System.out.println("Enter your account number: ");
         int accountNumber = Integer.parseInt(input.nextLine());
+        System.out.println("Which room would you like to book? ");
+        int roomToBook = Integer.parseInt(input.nextLine()) - 1;
         System.out.println("Which date would you like to book? 'XXXX-XX-XX' ");
         String dateToBook = input.nextLine();
 
@@ -170,14 +170,11 @@ public class HotelLogic {
                 bookings.add(booking);
                 hotelRooms.get(roomToBook).setBooked(true);
             } else if (hotelRooms.get(roomToBook).isBooked()) {
-
-            } else if (arrayListCustomer.get(i).getAccountNumber() == accountNumber && hotelRooms.get(roomToBook - 1).isBooked() == false) {
+                System.out.println("The room you wish to book is already taken..");
+            } else if (arrayListCustomer.get(i).getAccountNumber() == accountNumber && !hotelRooms.get(roomToBook - 1).isBooked()) {
                 Booking booking = new Booking(roomToBook - 1, dateToBook, accountNumber);
                 bookings.add(booking);
                 hotelRooms.get(roomToBook - 1).setBooked(true);
-            } else if (hotelRooms.get(roomToBook).isBooked() == true) {
-
-                System.out.println("The room you wish to book is already taken..");
             } else if (arrayListCustomer.get(i).getAccountNumber() == 0) {
                 System.out.println("No such account number in the system..");
             }
@@ -188,9 +185,9 @@ public class HotelLogic {
     //metod för att kolla alla rum som är bokade
     public void viewBookings(ArrayList<Booking> bookings) {
         for (int i = 0; i < bookings.size(); i++) {
-            System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook() + 1));
+            System.out.println("Hotel room: " + (bookings.get(i).getHotelRoomToBook()));
             System.out.println("Booked by account: " + bookings.get(i).getAccountNumber());
-            System.out.println("Booked during " + bookings.get(i).getDateToBook());
+            System.out.println("Booked date " + bookings.get(i).getDateToBook());
         }
     }
 
@@ -205,161 +202,195 @@ public class HotelLogic {
                 System.out.println("Booked during date: " + bookings.get(i).getDateToBook());
             }
         }
+        System.out.println("...Previous Booking...");
+        int prevBooking;
+        for (int i = 0; i < bookings.size(); i++) {
+            prevBooking = bookings.size();
+
+            System.out.println(prevBooking);
+        }
     }
 
-// redigera info om rum - Kristian
- public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
-     System.out.print("Enter the room number you want to edit: ");
-     int roomNumber = Integer.parseInt(input.nextLine());
-     for (int j = 0; j < hotelRooms.size(); j++) {
-         if (hotelRooms.get(j).getRoomNumber() == roomNumber) {
-             PrintMenus.menuForEditRoomInfo();
-         }
-     }
-         int answer = Integer.parseInt(input.nextLine());
-                 switch (answer) {
-                     case 1:
-                             System.out.println("Which number would you like the room to get? ");
-                             int newRoomNumber = Integer.parseInt(input.nextLine());
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setRoomNumber(newRoomNumber);
-                             }
-                         }
-                         break;
-                     case 2:
-                             System.out.println("How many beds are there in this room? ");
-                             int newNumberOfBeds = Integer.parseInt(input.nextLine());
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setNumberOfBeds(newNumberOfBeds);
-                             }
-                         }
-                         break;
-                     case 3:
-                             System.out.println("What will the price per night be?");
-                             int newPricePerNight = Integer.parseInt(input.nextLine());
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setPricePerNight(newPricePerNight);
-                             }
-                         }
-                         break;
-                     case 4:
-                         System.out.println("Does the room have a balcony?(yes/no) ");
-                         String balconychoice = input.nextLine();
-                         boolean newHasBalcony = false;
-                         if(balconychoice.equals("yes")){
-                             newHasBalcony = true;
+    // redigera info om rum - Kristian
+    public ArrayList<Room> editRoom(ArrayList<Room> hotelRooms) {
+        System.out.print("Enter the room number you want to edit: ");
+        int roomNumber = Integer.parseInt(input.nextLine());
+        for (int j = 0; j < hotelRooms.size(); j++) {
+            if (hotelRooms.get(j).getRoomNumber() == roomNumber) {
+                PrintMenus.menuForEditRoomInfo();
+            }
+        }
+        int answer = Integer.parseInt(input.nextLine());
+        switch (answer) {
+            case 1:
+                System.out.println("Which number would you like the room to get? ");
+                int newRoomNumber = Integer.parseInt(input.nextLine());
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setRoomNumber(newRoomNumber);
+                    }
+                }
+                break;
+            case 2:
+                System.out.println("How many beds are there in this room? ");
+                int newNumberOfBeds = Integer.parseInt(input.nextLine());
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setNumberOfBeds(newNumberOfBeds);
+                    }
+                }
+                break;
+            case 3:
+                System.out.println("What will the price per night be?");
+                int newPricePerNight = Integer.parseInt(input.nextLine());
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setPricePerNight(newPricePerNight);
+                    }
+                }
+                break;
+            case 4:
+                System.out.println("Does the room have a balcony?(yes/no) ");
+                String balconychoice = input.nextLine();
+                boolean newHasBalcony = false;
+                if (balconychoice.equals("yes")) {
+                    newHasBalcony = true;
 
-                         }
-                         else if (balconychoice.equals("no")){
-                             newHasBalcony = false;
-                         }
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                         if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                             hotelRooms.get(i).setHasBalcony(newHasBalcony);
-                         }
-                         }
-                         break;
-                     case 5:
-                             System.out.println("Is the room booked or not?(yes/no)");
-                             String bookedchoice = input.nextLine();
-                             boolean newIsBooked = false;
-                             if(bookedchoice.equals("yes")){
-                                 newIsBooked = true;
+                } else if (balconychoice.equals("no")) {
+                    newHasBalcony = false;
+                }
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setHasBalcony(newHasBalcony);
+                    }
+                }
+                break;
+            case 5:
+                System.out.println("Is the room booked or not?(yes/no)");
+                String bookedchoice = input.nextLine();
+                boolean newIsBooked = false;
+                if (bookedchoice.equals("yes")) {
+                    newIsBooked = true;
 
-                             }
-                             else if (bookedchoice.equals("no")){
-                                 newIsBooked = false;
-                     }
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setBooked(newIsBooked);
-                             }
-                         }
-                         break;
-                     case 6:
-                             System.out.println("Which floor is the room located in? ");
-                             int newFloor = input.nextInt();
-                         for (int i = 0; i < hotelRooms.size(); i++) {
-                             if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
-                                 hotelRooms.get(i).setFloor(newFloor);
-                             }
-                         }
-                         break;
-                     default:
-                         System.out.println("Incorrect input, enter a number between 1-6 ");
-                         break;
-                 }
-     return hotelRooms;
- }
+                } else if (bookedchoice.equals("no")) {
+                    newIsBooked = false;
+                }
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setBooked(newIsBooked);
+                    }
+                }
+                break;
+            case 6:
+                System.out.println("Which floor is the room located in? ");
+                int newFloor = input.nextInt();
+                for (int i = 0; i < hotelRooms.size(); i++) {
+                    if (hotelRooms.get(i).getRoomNumber() == roomNumber) {
+                        hotelRooms.get(i).setFloor(newFloor);
+                    }
+                }
+                break;
+            default:
+                System.out.println("Incorrect input, enter a number between 1-6 ");
+                break;
+        }
+        return hotelRooms;
+    }
 
-        //metod för att ändra information om customer
-        public ArrayList<Customer> editCustomInfo (ArrayList < Customer > customerArrayList) {
-            System.out.println("Which of the following information would you like to change? \n" +
-                    "1) name \n" +
-                    "2) address \n" +
-                    "3) phonenumber \n" +
-                    "4) email \n" +
-                    "5) username \n" +
-                    "6) password \n");
-            int choice = Integer.parseInt(input.nextLine());
-            for (int i = 0; i < customerArrayList.size(); i++) {
-                switch (choice) {
-                    case 1:
-                        System.out.println("Current name: " + customerArrayList.get(i).getName());
-                        System.out.print("New name: ");
-                        String newname = input.nextLine();
-                        customerArrayList.get(i).setName(newname);
-                        break;
-                    case 2:
-                        System.out.println("Current address: " + customerArrayList.get(i).getAddress());
-                        System.out.print("New address: ");
-                        String newaddress = input.nextLine();
-                        customerArrayList.get(i).setName(newaddress);
-                        break;
-                    case 3:
-                        System.out.println("Current phonenumber: " + customerArrayList.get(i).getTelephoneNumber());
-                        System.out.print("New phonenumber: ");
-                        String newphonenumber = input.nextLine();
-                        customerArrayList.get(i).setName(newphonenumber);
-                        break;
-                    case 4:
-                        System.out.println("Current email: " + customerArrayList.get(i).getEmail());
-                        System.out.print("New email: ");
-                        String newemail = input.nextLine();
-                        customerArrayList.get(i).setName(newemail);
-                        break;
-                    case 5:
-                        System.out.println("Current username: " + customerArrayList.get(i).getUsername());
-                        System.out.print("New username: ");
-                        String newusername = input.nextLine();
-                        System.out.println("Confirm new username: ");
-                        String confirmnewusername = input.nextLine();
-                        if (newusername.equals(confirmnewusername)) {
-                            customerArrayList.get(i).setName(newusername);
-                        } else {
-                            System.out.println("Username doesn't match!");
-                        }
-                        break;
-                    case 6:
-                        System.out.println("Current password: " + customerArrayList.get(i).getPassword());
-                        System.out.println("New password: ");
-                        String newpassword = input.nextLine();
-                        System.out.println("Confirm new password: ");
-                        String confirmnewpassword = input.nextLine();
-                        if (newpassword.equals(confirmnewpassword)) {
-                            customerArrayList.get(i).setName(newpassword);
-                        } else {
-                            System.out.println("Username doesn't match!");
-                        }
+    //metod för att ändra information om customer
+    public ArrayList<Customer> editCustomInfo(ArrayList<Customer> customerArrayList) {
+        System.out.println("Which of the following information would you like to change? \n" +
+                "1) name \n" +
+                "2) address \n" +
+                "3) phone number \n" +
+                "4) email \n" +
+                "5) username \n" +
+                "6) password \n"
+        );
+        int choice = Integer.parseInt(input.nextLine());
+        for (int i = 0; i < customerArrayList.size(); i++) {
+            switch (choice) {
+                case 1:
+                    System.out.println("Current name: " + customerArrayList.get(i).getName());
+                    System.out.print("New name: ");
+                    String newname = input.nextLine();
+                    customerArrayList.get(i).setName(newname);
+                    break;
+                case 2:
+                    System.out.println("Current address: " + customerArrayList.get(i).getAddress());
+                    System.out.print("New address: ");
+                    String newaddress = input.nextLine();
+                    customerArrayList.get(i).setName(newaddress);
+                    break;
+                case 3:
+                    System.out.println("Current phonenumber: " + customerArrayList.get(i).getTelephoneNumber());
+                    System.out.print("New phonenumber: ");
+                    String newphonenumber = input.nextLine();
+                    customerArrayList.get(i).setName(newphonenumber);
+                    break;
+                case 4:
+                    System.out.println("Current email: " + customerArrayList.get(i).getEmail());
+                    System.out.print("New email: ");
+                    String newemail = input.nextLine();
+                    customerArrayList.get(i).setName(newemail);
+                    break;
+                case 5:
+                    System.out.println("Current username: " + customerArrayList.get(i).getUsername());
+                    System.out.print("New username: ");
+                    String newusername = input.nextLine();
+                    System.out.println("Confirm new username: ");
+                    String confirmnewusername = input.nextLine();
+                    if (newusername.equals(confirmnewusername)) {
+                        customerArrayList.get(i).setName(newusername);
+                    } else {
+                        System.out.println("Username doesn't match!");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Current password: " + customerArrayList.get(i).getPassword());
+                    System.out.println("New password: ");
+                    String newpassword = input.nextLine();
+                    System.out.println("Confirm new password: ");
+                    String confirmnewpassword = input.nextLine();
+                    if (newpassword.equals(confirmnewpassword)) {
                         customerArrayList.get(i).setName(newpassword);
-                    default:
-                        System.out.println("Invalid choice!");
-                        break;
+                    } else {
+                        System.out.println("Username doesn't match!");
+                    }
+                    customerArrayList.get(i).setName(newpassword);
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
+            }
+        }
+        return customerArrayList;
+    }
+
+    public void checkIn(ArrayList<Booking> bookings) {
+        int accountNumber;
+
+        System.out.println("Enter your account number!");
+        accountNumber = input.nextInt();
+        if (accountNumber >= 0) {
+            for (int j = 0; j < bookings.size(); j++) {
+                if (bookings.get(j).getAccountNumber() == accountNumber) {
+                    System.out.println("You are successfully checked-in this date: " + bookings.get(j).getDateToBook());
                 }
             }
-            return customerArrayList;
         }
+
+    }
+    public void checkOut(ArrayList<Booking>bookings){
+        int accountNumber;
+        System.out.println("Enter your account number!");
+        accountNumber = input.nextInt();
+
+        if (accountNumber >=0){
+            for (int i = 0; i < bookings.size(); i++) {
+                if (bookings.get(i).getAccountNumber() == accountNumber){
+                    System.out.println("You are successfully checked-out: " + bookings.remove(i).getDateToBook());
+                }
+            }
+        }
+    }
 }
