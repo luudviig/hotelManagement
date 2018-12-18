@@ -1,6 +1,9 @@
 package hotelManagement;
 
-public class Booking {
+import java.io.Serializable;
+
+public class Booking implements Serializable {
+
     private int hotelRoomToBook;
     private String dateToBook;
     private int accountNumber;
