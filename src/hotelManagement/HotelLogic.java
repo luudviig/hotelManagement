@@ -14,7 +14,7 @@ public class HotelLogic {
             if (bookings.get(i).getDateToBook().equals(dateToSearchFor)) {
                 System.out.println("Booking belongs to account: " + bookings.get(i).getAccountNumber());
                 System.out.println("Booked during: " + bookings.get(i).getDateToBook());
-                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook());
+                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook() + 1);
             }
         }
     }
