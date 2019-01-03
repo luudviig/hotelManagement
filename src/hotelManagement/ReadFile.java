@@ -19,7 +19,7 @@ public class ReadFile {
     public void readFile (){
         try { while (x.hasNext()) {
             System.out.print(x.nextLine()+ "\n");
-            }
+        }
         }catch (Exception ex){
             System.out.println("There was an error reading the file..");
         }
