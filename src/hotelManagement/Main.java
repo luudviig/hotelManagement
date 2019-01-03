@@ -25,7 +25,7 @@ public class Main {
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
         //Kallar på metod som skapar en customer.
-        hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
+         arrayListCustomer = hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
 
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {

@@ -14,8 +14,10 @@ public class HotelLogic {
             if (bookings.get(i).getDateToBook().equals(dateToSearchFor)) {
                 System.out.println("Booking belongs to account: " + bookings.get(i).getAccountNumber());
                 System.out.println("Booked during: " + bookings.get(i).getDateToBook());
-                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook());
+                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook()+1);
+                System.out.println();
             }
+
         }
     }
 
@@ -59,7 +61,11 @@ public class HotelLogic {
 
         if (arraylistcustomer.size() == 0) {
             accountNumber = 1;
-        } else if (arraylistcustomer.size() > 1) {
+        }
+        else if (arraylistcustomer.size() == 1 ){
+        accountNumber = 2;
+        }
+        else if (arraylistcustomer.size() > 1) {
             accountNumber = (arraylistcustomer.get(arraylistcustomer.size() - 1).getAccountNumber()) + 1;
         }
         do {
@@ -158,13 +164,13 @@ public class HotelLogic {
             } else if (hotelRooms.get(i).isHasBalcony() == false) {
                 System.out.println("Balcony: No");
             }
-            if (hotelRooms.get(i).getIsBooked().length() > 1) {
+            if (hotelRooms.get(i).getIsBooked().length() >= 1) {
                 System.out.print("Booked during date(s): " );
                 for (int j = 0; j<bookings.size(); j++) {
-                    System.out.println(bookings.get(j).getDateToBook());
+                    System.out.print(bookings.get(j).getDateToBook() + ", ");
                 }
                 System.out.println();
-            } else if (hotelRooms.get(i).getIsBooked().length() <= 1) {
+            } else if (hotelRooms.get(i).getIsBooked().length() < 1) {
                 System.out.println("already booked: no");
 
             }
@@ -221,21 +227,6 @@ public class HotelLogic {
             int accountNumber;
             String dateToBook="";
             do {
-                System.out.println("Which room would you like to book? ");
-                roomToBook = Integer.parseInt(input.nextLine()) - 1;
-                if (roomToBook >= hotelRooms.size()) {
-                    System.out.println("Input has to be greater than 0, not booked and existing in system..");
-                } else if (roomToBook >= 1 && roomToBook <= hotelRooms.size() - 1) {
-                    if (roomToBook <= 0 || hotelRooms.get(roomToBook).getIsBooked().length()>1) {
-                        System.out.println("Input has to be greater than 0, not booked and existing in system..");
-                    } else if (roomToBook >= 1 && roomToBook <= hotelRooms.size() + 1 && hotelRooms.get(roomToBook).getIsBooked().length()==0) {
-                        hotelRooms.get(roomToBook).setDateBooking(dateToBook);
-                        a = false;
-                    }
-                }
-
-            } while (a);
-            do {
                 System.out.println("Enter your account number: ");
                 accountNumber = Integer.parseInt(input.nextLine());
                 if (accountNumber <= 0) {
@@ -254,6 +245,18 @@ public class HotelLogic {
                 } else {
                     c = false;
                 }
+                do {
+                    System.out.println("Which room would you like to book? ");
+                    roomToBook = Integer.parseInt(input.nextLine())-1;
+                    if (roomToBook >= hotelRooms.size() || roomToBook <0) {
+                        System.out.println("Input has to be greater than 0, not booked and existing in system..");
+                    } else if (roomToBook >= 0 && roomToBook <= hotelRooms.size() - 1) {
+                        if (roomToBook >= 0 && roomToBook <= hotelRooms.size() -1 && !hotelRooms.get(roomToBook).getIsBooked().contains(dateToBook)) {
+                            hotelRooms.get(roomToBook).setDateBooking(dateToBook);
+                            a = false;
+                        }
+                    }
+                } while (a);
 
                 Booking booking = new Booking(roomToBook, dateToBook, accountNumber);
                 bookings.add(booking);
@@ -299,7 +302,7 @@ public class HotelLogic {
         boolean found = false;
         do {
             System.out.print("Enter the room number you want to edit: ");
-            roomNumber = Integer.parseInt(input.nextLine());
+            roomNumber = Integer.parseInt(input.nextLine())-1;
             for (int j = 0; j < hotelRooms.size(); j++) {
                 if (hotelRooms.get(j).getRoomNumber() == roomNumber) {
                     found = true;
@@ -488,12 +491,10 @@ public class HotelLogic {
             for (int i = 0; i < bookings.size(); i++) {
                 if (bookings.get(i).getAccountNumber() == accountNumber) {
                     System.out.println("You are successfully checked-out: " + bookings.remove(i).getDateToBook());
-
                 }
             }
         }
     }
-
 }
 
 
