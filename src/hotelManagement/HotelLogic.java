@@ -14,7 +14,7 @@ public class HotelLogic {
             if (bookings.get(i).getDateToBook().equals(dateToSearchFor)) {
                 System.out.println("Booking belongs to account: " + bookings.get(i).getAccountNumber());
                 System.out.println("Booked during: " + bookings.get(i).getDateToBook());
-                System.out.println("Room booked: " + bookings.get(i).getHotelRoomToBook() + 1);
+                System.out.println("Room booked: " + (bookings.get(i).getHotelRoomToBook()+ 1));
                 System.out.println();
             }
         }
@@ -54,20 +54,12 @@ public class HotelLogic {
         boolean b = true;
         boolean c = true;
         boolean d = true;
+        boolean e = true;
         String ssn = "";
         String phone = "";
-        int accountNumber = 0;
 
-        if (arraylistcustomer.size() == 0) {
-            accountNumber = 1;
-        } else if (arraylistcustomer.size() == 1) {
-            accountNumber = 2;
-        } else if (arraylistcustomer.size() > 1) {
-            accountNumber = (arraylistcustomer.get(arraylistcustomer.size() - 1).getAccountNumber()) + 1;
-        }
+        int accountNumber = createAccountnumber(arraylistcustomer);
         do {
-
-
             System.out.println("Account number: " + accountNumber);
             System.out.print("Name: ");
             String name = input.nextLine();
@@ -76,15 +68,23 @@ public class HotelLogic {
                 ssn = input.nextLine();
                 if (!ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]")) {
                     System.out.println("SSN has to be in yyyy-mm-dd-xxxx format..");
-                } else {
+                }
+                else if (ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]")){
                     if (arraylistcustomer.size() > 0) {
-                        for (int i = 0; i < arraylistcustomer.size(); i++) {
-                            if (arraylistcustomer.get(i).getSsn().contains(ssn)) {
-                                System.out.println("This ssn is already registered in the system");
-                            } else {
-                                a = false;
+                        do {
+                            for (int i = 0; i < arraylistcustomer.size(); i++) {
+                                if (arraylistcustomer.get(i).getSsn().contains(ssn)) {
+                                    System.out.println("This ssn is already registered in the system");
+                                    e = false;
+                                    break;
+                                }
+                                else if (!arraylistcustomer.get(i).getSsn().contains(ssn)){
+                                    ssn = ssn;
+                                    e = false;
+                                    a = false;
+                                }
                             }
-                        }
+                        } while (e);
                     } else {
                         a = false;
                     }
@@ -95,7 +95,7 @@ public class HotelLogic {
             System.out.print("Address: ");
             String address = input.nextLine();
             while (d) {
-                System.out.print("Phonenumber: ");
+                System.out.print("Phone number: ");
                 phone = input.nextLine();
                 if (!phone.matches("[0]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]")) {
                     System.out.println("Phone number has to be 10 digits and start with a 0..");
@@ -141,9 +141,11 @@ public class HotelLogic {
         int accountNumber = Integer.parseInt(input.nextLine());
         for (int i = 0; i < arraylistcustomer.size(); i++) {
             if (bookings.size() > 1 && bookings.get(i).getAccountNumber() == accountNumber) {
-                System.out.println("Not possible to remove this customer since the cusomter already has booked a room..");
+                System.out.println("Not possible to remove this customer since the customer already has booked a room..");
+                break;
             } else if (arraylistcustomer.get(i).getAccountNumber() == accountNumber) {
-                arraylistcustomer.remove(i);
+                Customer customer = arraylistcustomer.get(i);
+                arraylistcustomer.remove(customer);
             }
         }
         return arraylistcustomer;
@@ -164,11 +166,12 @@ public class HotelLogic {
             if (hotelRooms.get(i).getIsBooked().length() >= 1) {
                 System.out.print("Booked during date(s): ");
                 for (int j = 0; j < bookings.size(); j++) {
-                    System.out.print(bookings.get(j).getDateToBook() + ", ");
+                    System.out.print(hotelRooms.get(i).getIsBooked());
+                    break;
                 }
                 System.out.println();
             } else if (hotelRooms.get(i).getIsBooked().length() < 1) {
-                System.out.println("already booked: no");
+                System.out.println("Booked during date(s): ");
 
             }
             System.out.println("Floor: " + hotelRooms.get(i).getFloor());
@@ -502,31 +505,100 @@ public class HotelLogic {
         }
     }
 
-    public ArrayList<Booking> removeBooking(ArrayList<Booking> bookings,ArrayList<Customer> arraylistCustomer, ArrayList<Room> hotelRooms) {
+    public void viewCurrentBookingsSpecificCustomer(ArrayList<Booking> bookings){
+        boolean bookingOrNot = true;
+        System.out.println("Enter account you would like to see bookings for: ");
+        int accountNumber = Integer.parseInt(input.nextLine());
+        if (bookings.size() > 0) {
+            for (int i = 0; i < bookings.size(); i++) {
+                if (bookings.get(i).getAccountNumber()==accountNumber) {
+                    System.out.println("Booking belongs to account: " + bookings.get(i).getAccountNumber());
+                    System.out.println("Booked date: " + bookings.get(i).getDateToBook());
+                    System.out.println("Room booked: " + (bookings.get(i).getHotelRoomToBook() + 1));
+                    System.out.println();
+                    bookingOrNot = false;
+                }
+            }
+        }
+        if (bookingOrNot){
+            System.out.println("Seems like the account number you have entered does not exist,\nor it does not have any bookings.\n ");
+        }
+    }
+
+    public void viewPreviousBookingsForSpecificCustomer(ArrayList<Booking> previousBookings){
+        System.out.println("Enter account you would like to see previous bookings for: ");
+        int accountNumber = Integer.parseInt(input.nextLine());
+        boolean bookingOrNot = true;
+        if (previousBookings.size() > 0) {
+            for (int i = 0; i < previousBookings.size(); i++) {
+                if (previousBookings.get(i).getAccountNumber()==accountNumber) {
+                    System.out.println("Booking belongs to account: " + previousBookings.get(i).getAccountNumber());
+                    System.out.println("Booked date: " + previousBookings.get(i).getDateToBook());
+                    System.out.println("Room that was booked: " + (previousBookings.get(i).getHotelRoomToBook() + 1));
+                    System.out.println();
+                    bookingOrNot = false;
+                }
+            }
+        }
+        if (bookingOrNot){
+            System.out.println("Seems like the account number you have entered does not exist,\nor it does not have any bookings.\n ");
+        }
+
+    }
+
+    public ArrayList<Booking> removeBooking(ArrayList<Booking> bookings, ArrayList<Customer> arraylistCustomer, ArrayList<Room> hotelRooms,ArrayList<Booking> previousBookings) {
         System.out.println("Enter account number: ");
         int accountNumber = Integer.parseInt(input.nextLine());
         boolean a = true;
-        
-        for (int i = 0; i < arraylistCustomer.size(); i++){
-            if (arraylistCustomer.get(i).getAccountNumber() == accountNumber){
-                for (int j = 0; j < bookings.size(); j++ ){
-                    if (bookings.get(j).getAccountNumber() == accountNumber){
-                        System.out.println("[" + (j+1) + "] " +  bookings.get(j).getDateToBook());
+
+        for (int i = 0; i < arraylistCustomer.size(); i++) {
+            if (arraylistCustomer.get(i).getAccountNumber() == accountNumber) {
+                for (int j = 0; j < bookings.size(); j++) {
+                    if (bookings.get(j).getAccountNumber() == accountNumber) {
+                        System.out.println("[" + (j + 1) + "] " + bookings.get(j).getDateToBook());
                         a = false;
                     }
                 }
-                if (!a){
+                if (!a) {
                     System.out.print("Booking to remove: ");
-                    int bookingToRemove = Integer.parseInt(input.nextLine());
-                    bookings.remove((bookingToRemove-1));
+                    int bookingToRemove = (Integer.parseInt(input.nextLine())-1);
+                    int counter = 0;
+                    do {
+                        if (hotelRooms.get(counter).getIsBooked().contains(bookings.get(bookingToRemove).getDateToBook())){
+                            String newIsBooked = hotelRooms.get(counter).getIsBooked().replace(bookings.get(bookingToRemove).getDateToBook()+", ", "");
+                            hotelRooms.get(counter).setIsBooked(newIsBooked);
+                            break;
+                        }
+                        else if (counter>hotelRooms.size()){
+                            break;
+                        }
+                        else
+                            counter++;
+                    }while(true);
+                    previousBookings.add(bookings.get(bookingToRemove));
+                    bookings.remove((bookingToRemove));
                     return bookings;
                 }
             }
         }
-
         if (a) {
-            System.out.println("Seems like the account number you have entered does not exist, \n or it does not have any bookings. ");
+            System.out.println("Seems like the account number you have entered does not exist,\nor it does not have any bookings.\n ");
         }
         return bookings;
     }
+
+    public int createAccountnumber(ArrayList<Customer> customerArrayList){
+        int accountNumber = 1;
+
+        for (int i = 0; i<customerArrayList.size(); i++){
+            if (customerArrayList.get(i).getAccountNumber() == accountNumber){
+                accountNumber++;
+            }
+            else {
+                break;
+            }
+        }
+        return accountNumber;
+    }
+
 }

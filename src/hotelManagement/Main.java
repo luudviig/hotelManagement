@@ -20,7 +20,7 @@ public class Main {
         HotelLogic hotelLogic = new HotelLogic();
         ArrayList<Room> hotelRooms = new ArrayList<>();
         ArrayList<Booking> bookings = new ArrayList<>();
-        ArrayList<Booking> preBooking = new ArrayList<>();
+        ArrayList<Booking> previousBookings = new ArrayList<>();
 
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
@@ -55,11 +55,11 @@ public class Main {
                                             } else if (choise2 == 4) {
                                                 arrayListCustomer = hotelLogic.editCustomInfo(arrayListCustomer);
                                             } else if (choise2 == 5) {
-                                                //View current bookings for specific customer
+                                            hotelLogic.viewCurrentBookingsSpecificCustomer(bookings);
                                             } else if (choise2 == 6) {
-                                                //History of all bookings specific customer
+                                                hotelLogic.viewPreviousBookingsForSpecificCustomer(previousBookings);
                                             } else if (choise2 == 7) {
-                                                hotelLogic.viewInfoAboutCustomer(arrayListCustomer, preBooking);
+                                                hotelLogic.viewInfoAboutCustomer(arrayListCustomer, previousBookings);
                                             } else if (choise2 == 8) {
                                                 c = false;
                                             } else {
@@ -110,7 +110,7 @@ public class Main {
                                                 createFile.addRecord(bookings.get(bookings.size() - 1));
                                                 createFile.closeFile();
                                             } else if (choise2 == 4) {
-                                                hotelLogic.removeBooking(bookings, arrayListCustomer, hotelRooms);
+                                                hotelLogic.removeBooking(bookings, arrayListCustomer, hotelRooms, previousBookings);
                                             } else if (choise2 == 5) {
                                                 hotelLogic.searchBooking(bookings);
                                             } else if (choise2 == 6) {
@@ -125,8 +125,8 @@ public class Main {
                                                 System.out.println("Incorrect input..");
                                             }
                                         } catch (Exception e) {
-                                            System.out.println("Incorrect input..");
-                                        }
+                                        System.out.println("Incorrect input..");
+                                    }
                                     } while (c);
                                 } else if (choise1 == 4) {
                                     b = false;
@@ -150,3 +150,6 @@ public class Main {
         } while (a);
     }
 }
+
+
+

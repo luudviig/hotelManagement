@@ -44,8 +44,8 @@ public class PrintMenus {
         System.out.println("[2] Add customer ");
         System.out.println("[3] Remove customer");
         System.out.println("[4] Edit customer information");
-        System.out.println("[5] View current bookings for specific customer");
-        System.out.println("[6] View history of all bookings for a specific customer");
+        System.out.println("[5] View current bookings for a specific customer");
+        System.out.println("[6] View old bookings for a specific customer");
         System.out.println("[7] View info about specific customer");
         System.out.println("[8] Back");
     }
