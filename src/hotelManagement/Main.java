@@ -25,7 +25,7 @@ public class Main {
         //kallar på metod som skapar alla rum.
         hotelRooms = hotelLogic.createArrayListOfRooms(hotelRooms);
         //Kallar på metod som skapar en customer.
-        hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
+         arrayListCustomer = hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
 
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
@@ -65,7 +65,7 @@ public class Main {
                                 PrintMenus.viewMenuEmployerOption2();
                                 int choise4 = Integer.parseInt(input.nextLine());
                                 if (choise4 == 1) {
-                                    hotelLogic.viewRoom(hotelRooms);
+                                    hotelLogic.viewRoom(hotelRooms,bookings);
                                 } else if (choise4 == 2) {
                                     hotelLogic.availableRooms(hotelRooms);
                                 } else if (choise4 == 3) {
@@ -90,7 +90,7 @@ public class Main {
                                 } else if (choise2 == 2) {
                                    bookings = hotelLogic.makeBooking(bookings,arrayListCustomer,hotelRooms);
                                    createFile.openFile();
-                                   createFile.addRecords(bookings);
+                                   createFile.addRecord(bookings.get(bookings.size()-1));
                                    createFile.closeFile();
 
                                 } else if (choise2 == 3) {
@@ -98,7 +98,7 @@ public class Main {
                                 } else if (choise2 == 4) {
                                     hotelLogic.searchBooking(bookings);
                                 } else if (choise2 == 5) {
-
+                                    bookings = hotelLogic.editBookingInfo(bookings, hotelRooms);
                                 } else if (choise2 == 6) {
                                     hotelLogic.checkIn(bookings);
                                 } else if (choise2 == 7) {
@@ -134,6 +134,5 @@ public class Main {
                     break;
             }
         } while(a);
-
     }
 }
