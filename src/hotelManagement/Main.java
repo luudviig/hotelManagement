@@ -1,5 +1,4 @@
 package hotelManagement;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +27,6 @@ public class Main {
         arrayListCustomer = hotelLogic.addOneCustomerToArrayList(arrayListCustomer);
 
         //skapar en loop som loopar tills man "exitar"-Ludde
-
         do {
             try {
                 PrintMenus.printMenu();
@@ -81,7 +79,7 @@ public class Main {
                                             } else if (choise4 == 3) {
                                                 hotelRooms = hotelLogic.addRoom(hotelRooms);
                                             } else if (choise4 == 4) {
-                                                hotelRooms = hotelLogic.removeRoom(hotelRooms);
+                                                hotelRooms = hotelLogic.removeRoom(hotelRooms,bookings);
                                             } else if (choise4 == 5) {
                                                 hotelRooms = hotelLogic.editRoom(hotelRooms);
                                             } else if (choise4 == 6) {
@@ -114,7 +112,7 @@ public class Main {
                                             } else if (choise2 == 5) {
                                                 hotelLogic.searchBooking(bookings);
                                             } else if (choise2 == 6) {
-
+                                                hotelLogic.editBookingInfo(bookings,hotelRooms);
                                             } else if (choise2 == 7) {
                                                 hotelLogic.checkIn(bookings,arrayListCustomer);
                                             } else if (choise2 == 8) {
