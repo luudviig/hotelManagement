@@ -3,7 +3,7 @@ package hotelManagement;
 public class Customer {
 
     private final int accountNumber;
-    private static String ssn;
+    private String ssn;
     private String name;
     private String address;
     private String telephoneNumber;

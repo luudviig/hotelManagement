@@ -8,8 +8,7 @@ public class PrintMenus {
     public static void printMenu() {
         System.out.println("----Login Menu----");
         System.out.println("[1] Employee ");
-        System.out.println("[2] Customer ");
-        System.out.println("[3] Exit program");
+        System.out.println("[2] Exit program");
     }
 
     public static void menuForEditRoomInfo(){
@@ -28,7 +27,7 @@ public class PrintMenus {
         System.out.println("[2] View booking history");
         System.out.println("[3] Make new booking");
         System.out.println("[4] Edit information");
-        System.out.println("[5] Exit");
+        System.out.println("[5] Back");
     }
 
 
@@ -37,7 +36,7 @@ public class PrintMenus {
         System.out.println("[1] View customer specifications");
         System.out.println("[2] View room specifications");
         System.out.println("[3] View booking specifications");
-        System.out.println("[4] Exit");
+        System.out.println("[4] Back");
     }
 
     public static void viewMenuEmployerOption1() {
@@ -45,8 +44,8 @@ public class PrintMenus {
         System.out.println("[2] Add customer ");
         System.out.println("[3] Remove customer");
         System.out.println("[4] Edit customer information");
-        System.out.println("[5] View current bookings for specific customer");
-        System.out.println("[6] View history of all bookings for a specific customer");
+        System.out.println("[5] View current bookings for a specific customer");
+        System.out.println("[6] View old bookings for a specific customer");
         System.out.println("[7] View info about specific customer");
         System.out.println("[8] Back");
     }
@@ -62,14 +61,15 @@ public class PrintMenus {
     }
 
     public static void viewMenuEmployerOption3() {
-        System.out.println("[1] View bookings");
-        System.out.println("[2] Add booking");
-        System.out.println("[3] Remove booking");
-        System.out.println("[4] Search booking");
-        System.out.println("[5] Edit booking information");
-        System.out.println("[6] check in customer");
-        System.out.println("[7] check out customer");
-        System.out.println("[8] Back");
+        System.out.println("[1] View history of all bookings in text file");
+        System.out.println("[2] View current bookings");
+        System.out.println("[3] Add booking");
+        System.out.println("[4] Remove booking");
+        System.out.println("[5] Search booking");
+        System.out.println("[6] Edit booking information");
+        System.out.println("[7] check in customer");
+        System.out.println("[8] check out customer");
+        System.out.println("[9] Back");
     }
   public static void checkIncheckOut(){
       System.out.println(
@@ -78,6 +78,5 @@ public class PrintMenus {
               "[3] back\n"
       );
   }
-
 }
 
