@@ -59,7 +59,7 @@ public class Main {
                                             } else if (choise2 == 6) {
                                                 hotelLogic.viewPreviousBookingsForSpecificCustomer(previousBookings);
                                             } else if (choise2 == 7) {
-                                                hotelLogic.viewInfoAboutCustomer(arrayListCustomer, previousBookings);
+                                                hotelLogic.viewInfoAboutCustomer(arrayListCustomer, bookings, previousBookings);
                                             } else if (choise2 == 8) {
                                                 c = false;
                                             } else {
@@ -116,9 +116,9 @@ public class Main {
                                             } else if (choise2 == 6) {
 
                                             } else if (choise2 == 7) {
-                                                hotelLogic.checkIn(bookings);
+                                                hotelLogic.checkIn(bookings,arrayListCustomer);
                                             } else if (choise2 == 8) {
-                                                hotelLogic.checkOut(bookings);
+                                                hotelLogic.checkOut(bookings,arrayListCustomer,previousBookings,hotelRooms);
                                             } else if (choise2 == 9) {
                                                 c = false;
                                             } else {
