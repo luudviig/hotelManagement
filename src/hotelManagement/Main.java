@@ -98,7 +98,7 @@ public class Main {
                                 } else if (choise2 == 4) {
                                     hotelLogic.searchBooking(bookings);
                                 } else if (choise2 == 5) {
-
+                                    bookings = hotelLogic.editBookingInfo(bookings, hotelRooms);
                                 } else if (choise2 == 6) {
                                     hotelLogic.checkIn(bookings);
                                 } else if (choise2 == 7) {
