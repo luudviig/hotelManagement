@@ -133,7 +133,7 @@ public class HotelLogic {
         System.out.println("Enter account number of person to remove: ");
         int accountNumber = Integer.parseInt(input.nextLine());
         for (int i = 0; i < arraylistcustomer.size(); i++) {
-            if (bookings.size() > 1 && bookings.get(i).getAccountNumber() == accountNumber) {
+            if (bookings.size() >= 1 && bookings.get(i).getAccountNumber() == accountNumber) {
                 System.out.println("Not possible to remove this customer since the customer already has booked a room..");
                 break;
             } else if (arraylistcustomer.get(i).getAccountNumber() == accountNumber) {
@@ -295,7 +295,7 @@ public class HotelLogic {
         for (int i = 0; i < bookings.size(); i++) {
             if (bookings.get(i).getAccountNumber() == accountNumber) {
                 System.out.println("Account number: " + bookings.get(i).getAccountNumber());
-                System.out.println("Hotel room booked: " + bookings.get(i).getHotelRoomToBook());
+                System.out.println("Hotel room booked: " + (bookings.get(i).getHotelRoomToBook()+1));
                 System.out.println("Booked during date: " + bookings.get(i).getDateToBook());
                 if (bookings.get(i).isCheckedIn() == true) {
                     System.out.println("Checked in: yes");
@@ -309,7 +309,7 @@ public class HotelLogic {
         for (int i = 0; i < previousBookings.size(); i++) {
             if (previousBookings.get(i).getAccountNumber() == accountNumber) {
                 System.out.println("Account number: " + previousBookings.get(i).getAccountNumber());
-                System.out.println("Room that was booked: " + previousBookings.get(i).getHotelRoomToBook());
+                System.out.println("Room that was booked: " + (previousBookings.get(i).getHotelRoomToBook()+1));
                 System.out.println("Was booked the date: " + previousBookings.get(i).getDateToBook());
             }
         }
