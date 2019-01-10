@@ -21,16 +21,6 @@ public class PrintMenus {
 
     }
 
-    public static void viewMenuCustomer() {
-        System.out.println("------Menu----");
-        System.out.println("[1] View available room");
-        System.out.println("[2] View booking history");
-        System.out.println("[3] Make new booking");
-        System.out.println("[4] Edit information");
-        System.out.println("[5] Back");
-    }
-
-
     public static void viewMenuEmployeer1() {
         System.out.println("----Menu----");
         System.out.println("[1] View customer specifications");
@@ -71,12 +61,5 @@ public class PrintMenus {
         System.out.println("[8] check out customer");
         System.out.println("[9] Back");
     }
-  public static void checkIncheckOut(){
-      System.out.println(
-              "[1] Check-In\n" +
-              "[2] Check-Out\n"+
-              "[3] back\n"
-      );
-  }
 }
 
