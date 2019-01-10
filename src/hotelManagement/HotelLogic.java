@@ -71,9 +71,9 @@ public class HotelLogic {
             while (a) {
                 System.out.print("SSN (yyyy-mm-dd-xxxx): ");
                 ssn = input.nextLine();
-                if (!ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]")) {
+                if (!ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]") || ssn.length() != 15) {
                     System.out.println("SSN has to be in yyyy-mm-dd-xxxx format..");
-                } else if (ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]")) {
+                } else if (ssn.matches("[0-9]+[0-9]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[-]+[0-9]+[0-9]+[0-9]+[0-9]") && ssn.length() == 15) {
                     if (arraylistcustomer.size() == 0) {
                         a = false;
                     } else if (arraylistcustomer.size() > 0) {
@@ -401,67 +401,79 @@ public class HotelLogic {
     //metod för att ändra information om customer
     public ArrayList<Customer> editCustomInfo(ArrayList<Customer> customerArrayList) {
         boolean a = true;
-        int accountinput;
-        do {
-            System.out.print("Enter account number: ");
-            accountinput = Integer.parseInt(input.nextLine());
-            for (int j = 0; j < customerArrayList.size(); j++) {
-                if (customerArrayList.get(j).getAccountNumber() == accountinput) {
-                    System.out.print("Which of the following information would you like to change? \n" +
-                            "1) name \n" +
-                            "2) address \n" +
-                            "3) phonenumber \n" +
-                            "4) email \n");
-                    a = false;
+        boolean accountFound = false;
+        System.out.println("Enter account number of the customer you wish to edit..");
+        int accountinput = Integer.parseInt(input.nextLine());
+        for (int k = 0; k<customerArrayList.size();k++){
+            if (customerArrayList.get(k).getAccountNumber() == accountinput){
+                accountFound = true;
+                do {
+                    for (int j = 0; j < customerArrayList.size(); j++) {
+                        if (customerArrayList.get(j).getAccountNumber() == accountinput) {
+                            System.out.print("Which of the following information would you like to change? \n" +
+                                    "1) name \n" +
+                                    "2) address \n" +
+                                    "3) phonenumber \n" +
+                                    "4) email \n");
+                            a = false;
+                        }
+                    }
+                } while (a);
+                int choice = Integer.parseInt(input.nextLine());
+                switch (choice) {
+                    case 1:
+                        for (int i = 0; i < customerArrayList.size(); i++) {
+                            if (customerArrayList.get(i).getAccountNumber() == accountinput) {
+                                System.out.println("Current name: " + customerArrayList.get(i).getName());
+                                System.out.print("New name: ");
+                                String newname = input.nextLine();
+                                customerArrayList.get(i).setName(newname);
+                            }
+                        }
+                        break;
+                    case 2:
+                        for (int i = 0; i < customerArrayList.size(); i++) {
+                            if (customerArrayList.get(i).getAccountNumber() == accountinput) {
+                                System.out.println("Current address: " + customerArrayList.get(i).getAddress());
+                                System.out.print("New address: ");
+                                String newaddress = input.nextLine();
+                                customerArrayList.get(i).setAddress(newaddress);
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (int i = 0; i < customerArrayList.size(); i++) {
+                            if (customerArrayList.get(i).getAccountNumber() == accountinput) {
+                                System.out.println("Current phonenumber: " + customerArrayList.get(i).getTelephoneNumber());
+                                System.out.print("New phonenumber: ");
+                                String newphonenumber = input.nextLine();
+                                customerArrayList.get(i).setTelephoneNumber(newphonenumber);
+                            }
+                        }
+                        break;
+                    case 4:
+                        for (int i = 0; i < customerArrayList.size(); i++) {
+                            if (customerArrayList.get(i).getAccountNumber() == accountinput) {
+                                System.out.println("Current email: " + customerArrayList.get(i).getEmail());
+                                System.out.print("New email: ");
+                                String newemail = input.nextLine();
+                                customerArrayList.get(i).setEmail(newemail);
+                            }
+                        }
+                        break;
+                    default:
+                        System.out.println("Invalid choice!");
+                        break;
                 }
             }
-        } while (a);
-        int choice = Integer.parseInt(input.nextLine());
-        switch (choice) {
-            case 1:
-                for (int i = 0; i < customerArrayList.size(); i++) {
-                    if (customerArrayList.get(i).getAccountNumber() == accountinput) {
-                        System.out.println("Current name: " + customerArrayList.get(i).getName());
-                        System.out.print("New name: ");
-                        String newname = input.nextLine();
-                        customerArrayList.get(i).setName(newname);
-                    }
-                }
-                break;
-            case 2:
-                for (int i = 0; i < customerArrayList.size(); i++) {
-                    if (customerArrayList.get(i).getAccountNumber() == accountinput) {
-                        System.out.println("Current address: " + customerArrayList.get(i).getAddress());
-                        System.out.print("New address: ");
-                        String newaddress = input.nextLine();
-                        customerArrayList.get(i).setAddress(newaddress);
-                    }
-                }
-                break;
-            case 3:
-                for (int i = 0; i < customerArrayList.size(); i++) {
-                    if (customerArrayList.get(i).getAccountNumber() == accountinput) {
-                        System.out.println("Current phonenumber: " + customerArrayList.get(i).getTelephoneNumber());
-                        System.out.print("New phonenumber: ");
-                        String newphonenumber = input.nextLine();
-                        customerArrayList.get(i).setTelephoneNumber(newphonenumber);
-                    }
-                }
-                break;
-            case 4:
-                for (int i = 0; i < customerArrayList.size(); i++) {
-                    if (customerArrayList.get(i).getAccountNumber() == accountinput) {
-                        System.out.println("Current email: " + customerArrayList.get(i).getEmail());
-                        System.out.print("New email: ");
-                        String newemail = input.nextLine();
-                        customerArrayList.get(i).setEmail(newemail);
-                    }
-                }
-                break;
-            default:
-                System.out.println("Invalid choice!");
-                break;
+
+
+            if (!accountFound){
+                System.out.println("Seems like this account number does not exist..");
+            }
+            break;
         }
+
         return customerArrayList;
     }
 
