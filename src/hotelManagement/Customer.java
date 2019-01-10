@@ -8,14 +8,15 @@ public class Customer {
     private String address;
     private String telephoneNumber;
     private String email;
+    public static int numbercounter = 0;
 
-    public Customer(String ssn, String name, String address, String telephoneNumber, String email, int accountNumber) {
+    public Customer(String ssn, String name, String address, String telephoneNumber, String email) {
         this.ssn = ssn;
         this.name = name;
         this.address = address;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
-        this.accountNumber = accountNumber;
+        this.accountNumber = ++numbercounter;
 
     }
 
