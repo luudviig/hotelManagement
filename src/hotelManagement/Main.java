@@ -28,20 +28,20 @@ public class Main {
 
         //skapar en loop som loopar tills man "exitar"-Ludde
         do {
-            try {
+//            try {
                 PrintMenus.printMenu();
                 int answer = Integer.parseInt(input.nextLine());
                 b = true;
                 switch (answer) {
                     case 1:
                         do {
-                            try {
+//                            try {
                                 c = true;
                                 PrintMenus.viewMenuEmployeer1();
                                 int choise1 = Integer.parseInt(input.nextLine());
                                 if (choise1 == 1) {
                                     do {
-                                        try {
+//                                        try {
                                             PrintMenus.viewMenuEmployerOption1();
                                             int choise2 = Integer.parseInt(input.nextLine());
                                             if (choise2 == 1) {
@@ -63,13 +63,13 @@ public class Main {
                                             } else {
                                                 System.out.println("Incorrect input..");
                                             }
-                                        } catch (Exception e) {
-                                            System.out.println("Incorrect input..");
-                                        }
+//                                        } catch (Exception e) {
+//                                            System.out.println("Incorrect input..");
+//                                        }
                                     } while (c);
                                 } else if (choise1 == 2) {
                                     do {
-                                        try {
+//                                        try {
                                             PrintMenus.viewMenuEmployerOption2();
                                             int choise4 = Integer.parseInt(input.nextLine());
                                             if (choise4 == 1) {
@@ -87,13 +87,13 @@ public class Main {
                                             } else {
                                                 System.out.println("Incorrect input..");
                                             }
-                                        } catch (Exception e) {
-                                            System.out.println("Incorrect input..");
-                                        }
+//                                        } catch (Exception e) {
+//                                            System.out.println("Incorrect input..");
+//                                        }
                                     } while (c);
                                 } else if (choise1 == 3) {
                                     do {
-                                        try {
+//                                        try {
                                             PrintMenus.viewMenuEmployerOption3();
                                             int choise2 = Integer.parseInt(input.nextLine());
                                             if (choise2 == 1) {
@@ -112,7 +112,7 @@ public class Main {
                                             } else if (choise2 == 5) {
                                                 hotelLogic.searchBooking(bookings);
                                             } else if (choise2 == 6) {
-                                                hotelLogic.editBookingInfo(bookings,hotelRooms);
+                                                hotelLogic.editBookingInfo(bookings,hotelRooms,arrayListCustomer);
                                             } else if (choise2 == 7) {
                                                 hotelLogic.checkIn(bookings,arrayListCustomer);
                                             } else if (choise2 == 8) {
@@ -122,29 +122,30 @@ public class Main {
                                             } else {
                                                 System.out.println("Incorrect input..");
                                             }
-                                        } catch (Exception e) {
-                                        System.out.println("Incorrect input..");
-                                    }
+//                                        } catch (Exception e) {
+//                                        System.out.println("Incorrect input..");
+//                                    }
                                     } while (c);
                                 } else if (choise1 == 4) {
                                     b = false;
                                 } else {
                                     System.out.println("Incorrect input..");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Incorrect input..");
-                            }
+//                            } catch (Exception e) {
+//                                System.out.println("Incorrect input..");
+//                            }
                         } while (b);
                         break;
                     case 2:
+                        PrintMenus.printByeMessage();
                         System.exit(0);
                         break;
                     default:
                         System.out.println("Incorrect input..");
                 }
-            } catch (Exception e) {
-                System.out.println("Incorrect input..");
-            }
+//            } catch (Exception e) {
+//                System.out.println("Incorrect input..");
+//            }
         } while (a);
     }
 }
