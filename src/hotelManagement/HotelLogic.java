@@ -9,9 +9,10 @@ public class HotelLogic {
     public void searchBooking(ArrayList<Booking> bookings) {
         System.out.println("What date would you like to see bookings? ");
         String dateToSearchFor = input.nextLine();
-
+        boolean printNoDate = true;
         for (int i = 0; i < bookings.size(); i++) {
             if (bookings.get(i).getDateToBook().equals(dateToSearchFor)) {
+                printNoDate = false;
                 System.out.println("Booking belongs to account: " + bookings.get(i).getAccountNumber());
                 System.out.println("Booked during: " + bookings.get(i).getDateToBook());
                 System.out.println("Room booked: " + (bookings.get(i).getHotelRoomToBook() + 1));
@@ -23,12 +24,15 @@ public class HotelLogic {
                 System.out.println();
             }
         }
+        if (printNoDate){
+            System.out.println("No bookings during this date..");
+        }
     }
 
     public ArrayList<Customer> addOneCustomerToArrayList(ArrayList<Customer> arrayListCustomer) {
         for (int i = 0; i < 1; i++) {
             Customer customer = new Customer("1993-03-25-1234", "Josefin Johansson", "Stockholm", "0123456789",
-                    "Josefin.93@hotmail.com", createAccountnumber(arrayListCustomer));
+                    "Josefin.93@hotmail.com");
             arrayListCustomer.add(customer);
         }
         return arrayListCustomer;
@@ -63,9 +67,8 @@ public class HotelLogic {
         String ssn = "";
         String phone = "";
 
-        int accountNumber = createAccountnumber(arraylistcustomer);
         do {
-            System.out.println("Account number: " + accountNumber);
+            System.out.println("Account number: " + (Customer.numbercounter +1));
             System.out.print("Name: ");
             String name = input.nextLine();
             while (a) {
@@ -109,7 +112,7 @@ public class HotelLogic {
                     d = false;
                 }
             }
-            Customer customer = new Customer(ssn, name, address, phone, email, accountNumber);
+            Customer customer = new Customer(ssn, name, address, phone, email);
             arraylistcustomer.add(customer);
 
             c = false;
@@ -187,7 +190,6 @@ public class HotelLogic {
         if (existentBooking) {
             System.out.println("The room you wish to remove might already be booked, or it is not existing..");
         }
-
         return hotelRooms;
     }
 
@@ -232,11 +234,9 @@ public class HotelLogic {
                 accountNumber = Integer.parseInt(input.nextLine());
                 if (accountNumber <= 0) {
                     System.out.println("please type in an account number greater than 0, and existing in system..");
-                } else if (accountNumber > arrayListCustomer.size()) {
-                    System.out.println("Account number does not exist..");
                 }
                 for (int i = 0; i < arrayListCustomer.size(); i++) {
-                    if ((accountNumber > 0 && accountNumber <= arrayListCustomer.size() && arrayListCustomer.get(i).getAccountNumber() == accountNumber)) {
+                    if ((accountNumber > 0 && arrayListCustomer.get(i).getAccountNumber() == accountNumber)) {
                         b = false;
                     }
                 }
@@ -405,7 +405,7 @@ public class HotelLogic {
         System.out.println("Enter account number of the customer you wish to edit..");
         int accountinput = Integer.parseInt(input.nextLine());
         for (int k = 0; k<customerArrayList.size();k++){
-            if (customerArrayList.get(k).getAccountNumber() == accountinput){
+            if (customerArrayList.get(k).getAccountNumber()==accountinput){
                 accountFound = true;
                 do {
                     for (int j = 0; j < customerArrayList.size(); j++) {
@@ -466,14 +466,10 @@ public class HotelLogic {
                         break;
                 }
             }
-
-
-            if (!accountFound){
-                System.out.println("Seems like this account number does not exist..");
-            }
-            break;
         }
-
+        if (!accountFound){
+            System.out.println("Seems like this account number does not exist..");
+        }
         return customerArrayList;
     }
 
@@ -733,7 +729,7 @@ public class HotelLogic {
             if (arraylistCustomer.get(i).getAccountNumber() == accountNumber) {
                 for (int j = 0; j < bookings.size(); j++) {
                     if (bookings.get(j).getAccountNumber() == accountNumber) {
-                        System.out.println("[" + (j + 1) + "] " + "(date) " + bookings.get(j).getDateToBook() + "(room) " + bookings.get(j).getHotelRoomToBook());
+                        System.out.println("[" + (j + 1) + "] " + "(date) " + bookings.get(j).getDateToBook() + "(room) " + (bookings.get(j).getHotelRoomToBook()+1));
                         a = false;
                     }
                 }
@@ -769,8 +765,6 @@ public class HotelLogic {
         for (int i = 0; i < customerArrayList.size(); i++) {
             if (customerArrayList.get(i).getAccountNumber() == accountNumber) {
                 accountNumber++;
-            } else {
-                break;
             }
         }
         return accountNumber;
